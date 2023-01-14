@@ -17,8 +17,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "npx eslint --fix src/**/*.js src/*.js",
+    "git:stage": "git add ."
   },
+  "pre-commit": [
+    "lint",
+    "git:stage"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -36,5 +42,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-prettier": "^4.2.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.8.2"
   }
 }
