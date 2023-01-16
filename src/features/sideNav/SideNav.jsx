@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { SymbolLogo } from './Logos';
+import { SymbolLogo } from '../../Components/Logos';
 
 export function SideNav(props) {
   const { routes } = props;
@@ -9,7 +9,7 @@ export function SideNav(props) {
   const activeClassName = `${inActiveClassName} active`;
 
   return (
-    <nav className="w-64">
+    <nav className="sidenav-grid">
       <div className="sidenav-main-wrap">
         <div className="nav-logo">
           <SymbolLogo />
