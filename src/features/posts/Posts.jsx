@@ -5,8 +5,8 @@ import { Pagination } from './pagination/Pagination';
 
 export function Posts() {
   return (
-    <div className="body-grid">
-      <div className="body-wrapper">
+    <main className="posts-grid">
+      <div className="posts-wrapper">
         <div className="posts">
           <div className="logo-container">
             <div className="logo-wrapper">
@@ -19,6 +19,6 @@ export function Posts() {
         </div>
         <Pagination />
       </div>
-    </div>
+    </main>
   );
 }

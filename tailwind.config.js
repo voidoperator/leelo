@@ -6,7 +6,7 @@ const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./public/**/*.{html,jsx}', './src/**/*.{html,jsx}'],
+  content: ['./public/**/*.{html,jsx,js}', './src/**/*.{html,jsx,js}'],
   theme: {
     borderColor: (theme) => ({
       ...theme('colors'),
@@ -96,25 +96,7 @@ module.exports = {
       },
       indigo: colors.indigo,
       violet: colors.violet,
-      awRed: {
-        DEFAULT: '#B31B34',
-        high: '#B31B34',
-        50: '#FBF4F5',
-        100: '#F7E8EB',
-        200: '#ECC6CC',
-        300: '#E1A4AE',
-        400: '#CA5F71',
-        500: '#B31B34',
-        600: '#A1182F',
-        700: '#861427',
-        800: '#6B101F',
-        900: '#580D19',
-      },
-      file: {
-        pdf: '#e31d1a',
-        word: '#2b579a',
-        excel: '#1d6f42',
-      },
+      cyan: colors.cyan,
     },
     fontSize: {
       inherit: 'inherit',
@@ -165,10 +147,6 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
-      },
-      fontSize: {
-        ctrl: ['0.9375rem', '1.6'],
-        xs2: ['0.6875rem', '1rem'],
       },
       height: {
         stretch: 'stretch',

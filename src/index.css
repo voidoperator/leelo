@@ -2,72 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-.item-a {
-  grid-area: header;
-}
-.item-b {
-  grid-area: main;
-}
-.item-c {
-  grid-area: sidebar;
-}
-.item-d {
-  grid-area: footer;
-}
-
 @layer components {
+  /* MAIN / BODY / ROOT */
   #react-root {
-    /* @apply flex flex-row justify-between overflow-x-hidden; */
     display: grid;
     grid-template-columns: 0.5fr 3fr 0.75fr;
     grid-template-rows: auto;
     grid-template-areas: 'sidenav body subreddits';
     height: 100vh;
   }
+  /* sidenav */
   .sidenav-grid {
+    @apply h-screen overflow-y-hidden bg-slate-50 dark:bg-slate-600;
     grid-area: sidenav;
   }
-  .body-grid {
+  .sidenav-wrapper {
+    @apply flex flex-col items-stretch justify-start w-full h-full bg-cyan-900;
+  }
+  .sidenav-wrapper > ul {
+    @apply grow;
+  }
+  .navlink-list {
+    @apply mx-2 my-2;
+  }
+  .navlink-btn {
+    @apply flex items-center p-2 text-base font-normal rounded-lg text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700;
+  }
+  .active {
+    @apply bg-slate-500;
+  }
+  .sidenav-svg {
+    @apply w-6 h-6 transition duration-75 text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white;
+  }
+
+  /* posts/body */
+  .posts-grid {
+    @apply h-screen overflow-y-auto bg-slate-50 dark:bg-slate-600;
     grid-area: body;
   }
-  .subreddits-grid {
-    grid-area: subreddits;
-  }
-  .body-wrapper {
-    @apply flex flex-col bg-gray-800 h-screen justify-between items-center grow;
+  .posts-wrapper {
+    @apply flex flex-col items-center justify-between w-full h-full bg-slate-800 grow;
   }
   .posts {
     @apply flex flex-col items-center gap-4;
   }
   .post {
-    @apply flex flex-col px-3 py-4 rounded-lg justify-start bg-blue-900 border-slate-900 items-center w-1/2;
+    @apply flex flex-col items-center justify-start w-1/2 px-3 py-4 bg-blue-900 rounded-lg border-slate-900;
   }
   .pagination {
     @apply mx-4 my-4;
   }
-  .sr-nav-wrapper {
-    @apply bg-black-low h-screen;
+
+  /* subreddits/menu */
+  .subreddits-grid {
+    @apply h-screen bg-slate-50 dark:bg-slate-600;
+    grid-area: subreddits;
   }
-  .sidenav-main-wrap {
-    @apply px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-600 h-screen;
+  .subreddits-wrapper {
+    @apply flex flex-col bg-black-low;
+    position: fixed;
+    top: 0;
   }
-  .navlink {
-    @apply flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
-  }
-  .active {
-    @apply bg-gray-500;
-  }
-  .sidenav-svg {
-    @apply w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white;
-  }
+
   .logo-wrapper {
-    @apply w-1/4 self-center justify-self-center my-8;
+    @apply self-center w-1/4 my-8 justify-self-center;
     color: #df3e3b;
   }
   .logo-container {
-    @apply flex flex-col rounded-full border-slate-500 border-2 mx-4 my-4 bg-gray-800;
+    @apply flex flex-col mx-4 my-4 border-2 rounded-full bg-slate-800 border-slate-500;
     width: 80%;
     z-index: 1;
+  }
+  .nav-link-txt {
+    @apply ml-3;
   }
   .leelo-logo {
     fill: #fcfbfa;
@@ -86,5 +93,8 @@
     width: 50%;
     margin: 0 auto;
     padding: 15px 20px 40px 20px;
+  }
+  .heroicons {
+    @apply w-6 h-6;
   }
 }

@@ -2,8 +2,8 @@ import React from 'react';
 
 export function Subreddits() {
   return (
-    <div className="subreddits-grid">
-      <div className="sr-nav-wrapper">
+    <aside className="subreddits-grid">
+      <div className="subreddits-wrapper">
         <p>
           Exercitation excepteur adipisicing tempor amet pariatur minim Lorem in
           non amet commodo do. Aliquip laborum culpa irure quis cupidatat velit
@@ -13,6 +13,6 @@ export function Subreddits() {
           velit commodo nulla voluptate Lorem.
         </p>
       </div>
-    </div>
+    </aside>
   );
 }

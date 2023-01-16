@@ -1,57 +1,58 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {
+  HomeIcon,
+  FireIcon,
+  RocketLaunchIcon,
+  SparklesIcon,
+  ChartBarIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/24/solid';
 import { SymbolLogo } from '../../Components/Logos';
 
 export function SideNav(props) {
   const { routes } = props;
-  const inActiveClassName = 'navlink';
+  const inActiveClassName = 'navlink-btn';
   const activeClassName = `${inActiveClassName} active`;
 
   return (
     <nav className="sidenav-grid">
-      <div className="sidenav-main-wrap">
+      <div className="sidenav-wrapper">
         <div className="nav-logo">
           <SymbolLogo />
         </div>
-        <ul className="space-y-2">
-          <li>
-            <NavLink className="navlink bg-re" exact="true" to="/">
-              <svg
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-                className="sidenav-svg"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-              </svg>
-              <span className="ml-3">inicio</span>
-            </NavLink>
-          </li>
+        <ul>
           {Object.entries(routes)
             .slice(1)
-            .map(([route, key]) => {
+            .map(([routeName, routeValue]) => {
               return (
-                <li key={key}>
+                <li key={routeValue} className="navlink-list">
                   <NavLink
-                    to={routes[route]()}
+                    to={routes[routeName]()}
                     className={({ isActive }) =>
                       isActive ? activeClassName : inActiveClassName
                     }
                   >
-                    <svg
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                      className="sidenav-svg"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-                      <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-                    </svg>
-                    <span className="ml-3">{route}</span>
+                    {routeName === 'inicio' && (
+                      <HomeIcon className="heroicons" />
+                    )}
+                    {routeName === 'mejor' && (
+                      <FireIcon className="heroicons" />
+                    )}
+                    {routeName === 'popular' && (
+                      <RocketLaunchIcon className="heroicons" />
+                    )}
+                    {routeName === 'nuevo' && (
+                      <SparklesIcon className="heroicons" />
+                    )}
+                    {routeName === 'trending' && (
+                      <ChartBarIcon className="heroicons" />
+                    )}
+                    {routeName === undefined && (
+                      <QuestionMarkCircleIcon className="heroicons" />
+                    )}
+                    <span className="nav-link-txt">{routeName}</span>
                   </NavLink>
                 </li>
               );
