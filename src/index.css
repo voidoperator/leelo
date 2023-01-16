@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .sidenav-main-wrap {
+    @apply px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-600;
+  }
+  .navlink {
+    @apply flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+  }
+  .active {
+    @apply bg-gray-500;
+  }
+  .sidenav-svg {
+    @apply w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white;
+  }
+  .leelo-logo {
+    fill: #fcfbfa;
+  }
+  .leelo-main {
+    fill: #fcfbfa;
+  }
+  .leelo-eyes {
+    fill: #df3e3b;
+  }
+  .leelo-outline {
+    fill: #2c2c2c;
+  }
+  .nav-logo > svg {
+    box-sizing: content-box;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 20px 40px 20px;
+  }
+}

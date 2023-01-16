@@ -1,8 +1,9 @@
 const ROUTES = {
-  postRoute: (id) => `/publicacion/${id}`,
+  publicacion: (id) => `/publicacion/${id}`,
   mejor: () => '/mejor',
   popular: () => '/popular',
   nuevo: () => '/nuevo',
+  trending: () => '/trending',
 };
 
 export default ROUTES;
