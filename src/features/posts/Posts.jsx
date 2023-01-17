@@ -7,12 +7,24 @@ export function Posts() {
   return (
     <main className="posts-grid">
       <div className="posts-wrapper">
-        <div className="posts">
-          <div className="logo-container">
-            <div className="logo-wrapper">
+        <div className="posts-container">
+          <div className="logo-wrapper">
+            <div className="logo-container">
               <LetterLogo />
             </div>
           </div>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
           <Post />
           <Post />
           <Post />

@@ -2,91 +2,176 @@
 @tailwind components;
 @tailwind utilities;
 
+/* transition duration-300 */
+/* sticky top-0 z-10 */
+
 @layer components {
-  /* MAIN / BODY / ROOT */
+  /* main / body / root */
   #react-root {
     display: grid;
-    grid-template-columns: 0.5fr 3fr 0.75fr;
+    grid-template-columns: 0.75fr 3fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 'sidenav body subreddits';
     height: 100vh;
   }
   /* sidenav */
   .sidenav-grid {
-    @apply h-screen overflow-y-hidden bg-slate-50 dark:bg-slate-600;
+    @apply h-screen dark:bg-gray-900;
     grid-area: sidenav;
   }
   .sidenav-wrapper {
-    @apply flex flex-col items-stretch justify-start w-full h-full bg-cyan-900;
+    @apply sticky top-0 z-10 flex flex-col items-stretch justify-start w-full h-full;
   }
   .sidenav-wrapper > ul {
     @apply grow;
   }
   .navlink-list {
-    @apply mx-2 my-2;
+    @apply mx-4 my-2;
   }
-  .navlink-btn {
-    @apply flex items-center p-2 text-base font-normal rounded-lg text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700;
+  .navlink-link {
+    @apply flex items-center p-2 text-base font-normal transition duration-300 rounded-lg text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700;
   }
   .active {
     @apply bg-slate-500;
   }
-  .sidenav-svg {
-    @apply w-6 h-6 transition duration-75 text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white;
-  }
 
   /* posts/body */
   .posts-grid {
-    @apply h-screen overflow-y-auto bg-slate-50 dark:bg-slate-600;
+    @apply h-screen overflow-x-hidden overflow-y-auto dark:bg-slate-800;
     grid-area: body;
   }
+  .posts-grid::-webkit-scrollbar {
+    display: none;
+  }
   .posts-wrapper {
-    @apply flex flex-col items-center justify-between w-full h-full bg-slate-800 grow;
+    @apply flex flex-col items-center justify-between w-full h-full grow;
   }
-  .posts {
-    @apply flex flex-col items-center gap-4;
+  .posts-container {
+    @apply flex flex-col items-center min-w-full gap-4;
   }
-  .post {
-    @apply flex flex-col items-center justify-start w-1/2 px-3 py-4 bg-blue-900 rounded-lg border-slate-900;
+
+  /* post component */
+  .post-wrapper {
+    @apply flex w-2/3 px-3 py-4 rounded-xl bg-slate-700 border-slate-900;
   }
+  .post-grid {
+    @apply ml-2 mr-4;
+    display: grid;
+    grid-template-columns: 0.25fr 10fr;
+    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-areas:
+      'upvotes info'
+      'upvotes content'
+      'upvotes icons';
+    width: 100%;
+    height: auto;
+  }
+
+  .upvotes {
+    @apply flex flex-col items-center justify-center mr-3;
+    grid-area: upvotes;
+  }
+  .votes {
+    @apply text-lg text-red-500;
+  }
+  .votes-deco {
+    @apply w-0 h-full border border-red-500;
+  }
+  .post-content {
+    @apply flex flex-col;
+    grid-area: content;
+  }
+  .post-info {
+    @apply inline-flex flex-row items-center justify-start gap-1;
+    grid-area: info;
+  }
+  .name-icon-wrapper {
+    @apply flex flex-row gap-1;
+  }
+  .subreddit-icon {
+    @apply w-8 h-8 text-white;
+  }
+  .subreddit-name {
+    @apply mr-1 text-lg font-semibold text-gray-900 dark:text-white;
+  }
+  .post-author {
+    @apply text-sm font-normal text-gray-400 dark:text-gray-500;
+  }
+  .post-date {
+    @apply text-sm font-normal text-gray-400 dark:text-gray-500;
+  }
+  .post-title {
+    @apply mb-4 text-base font-normal text-gray-500 dark:text-gray-400;
+  }
+  .post-icons {
+    @apply flex flex-row items-center justify-between w-full;
+    grid-area: icons;
+  }
+
+  /* Pagination / Searchbar */
   .pagination {
     @apply mx-4 my-4;
   }
 
   /* subreddits/menu */
   .subreddits-grid {
-    @apply h-screen bg-slate-50 dark:bg-slate-600;
+    @apply grid h-screen overflow-x-hidden overflow-y-auto dark:bg-gray-900;
     grid-area: subreddits;
   }
-  .subreddits-wrapper {
-    @apply flex flex-col bg-black-low;
-    position: fixed;
-    top: 0;
+  .subreddits-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .searchbar-grid {
+    grid-area: searchbar;
+  }
+  .sub-grid {
+    @apply sticky top-0 z-10 mx-4 my-4;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 10fr;
+    grid-template-areas:
+      'searchbar'
+      'searchresults';
+  }
+  .searchbar-input {
+    @apply block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+  }
+  .search-btn {
+    @apply transition duration-300 text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+  }
+  .searchresults-grid {
+    @apply grid items-baseline;
+    grid-area: searchresults;
+  }
+  .searchresults-wrapper {
+    @apply flex flex-col items-start justify-start p-8 text-white bg-slate-700 rounded-xl;
   }
 
+  /* Logos / SVG / Assetts */
   .logo-wrapper {
-    @apply self-center w-1/4 my-8 justify-self-center;
-    color: #df3e3b;
+    @apply sticky top-0 z-10 flex flex-col w-full mx-4 my-4 border-b bg-slate-800 border-slate-500;
   }
   .logo-container {
-    @apply flex flex-col mx-4 my-4 border-2 rounded-full bg-slate-800 border-slate-500;
-    width: 80%;
-    z-index: 1;
+    @apply self-center w-1/5 mt-5 mb-12 justify-self-center;
+  }
+
+  a {
+    @apply transition duration-300;
   }
   .nav-link-txt {
-    @apply ml-3;
+    @apply ml-3 text-stone-50;
   }
-  .leelo-logo {
-    fill: #fcfbfa;
-  }
-  .leelo-main {
-    fill: #fcfbfa;
-  }
-  .leelo-eyes {
-    fill: #df3e3b;
+  .letter-logo {
+    @apply fill-red-500;
   }
   .leelo-outline {
-    fill: #2c2c2c;
+    @apply fill-black;
+  }
+  .leelo-main {
+    @apply fill-stone-50;
+  }
+  .leelo-eyes {
+    @apply fill-red-500;
   }
   .nav-logo > svg {
     box-sizing: content-box;
@@ -95,6 +180,6 @@
     padding: 15px 20px 40px 20px;
   }
   .heroicons {
-    @apply w-6 h-6;
+    @apply w-6 h-6 fill-stone-50;
   }
 }
