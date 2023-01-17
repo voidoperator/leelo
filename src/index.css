@@ -44,55 +44,53 @@
     display: none;
   }
   .posts-wrapper {
-    @apply flex flex-col items-center justify-between w-full h-full grow;
+    @apply flex flex-col items-center justify-between w-full h-full gap-4;
   }
-  .posts-container {
-    @apply flex flex-col items-center min-w-full gap-4;
+  .header-logo {
+    @apply sticky z-10 flex flex-col items-center min-w-full gap-4;
+    top: -20px;
   }
 
   /* post component */
   .post-wrapper {
-    @apply flex w-2/3 px-3 py-4 rounded-xl bg-slate-700 border-slate-900;
+    @apply flex flex-row px-2 pt-4 pb-3 shadow-lg rounded-xl bg-slate-700 border-slate-900;
+    width: 80%;
   }
-  .post-grid {
-    @apply ml-2 mr-4;
-    display: grid;
-    grid-template-columns: 0.25fr 10fr;
-    grid-template-rows: 1fr 10fr 1fr;
-    grid-template-areas:
-      'upvotes info'
-      'upvotes content'
-      'upvotes icons';
-    width: 100%;
-    height: auto;
-  }
-
   .upvotes {
-    @apply flex flex-col items-center justify-center mr-3;
-    grid-area: upvotes;
+    @apply flex flex-col items-center justify-center mr-3 grow-0;
   }
   .votes {
-    @apply text-lg text-red-500;
+    @apply text-base text-red-500;
   }
   .votes-deco {
     @apply w-0 h-full border border-red-500;
   }
-  .post-content {
-    @apply flex flex-col;
-    grid-area: content;
+  .post-group {
+    @apply flex flex-col items-center justify-center w-full grow;
   }
   .post-info {
-    @apply inline-flex flex-row items-center justify-start gap-1;
-    grid-area: info;
+    @apply flex flex-col items-start self-start justify-center gap-1;
+  }
+  .post-content {
+    @apply flex flex-col items-start w-full;
+  }
+  .post-content > img {
+    @apply w-full rounded-md;
+  }
+  .post-icons {
+    @apply flex flex-row items-end justify-between w-full;
   }
   .name-icon-wrapper {
     @apply flex flex-row gap-1;
   }
   .subreddit-icon {
-    @apply w-8 text-stone-50;
+    @apply w-8 text-gray-200;
+  }
+  .vote-icon {
+    @apply w-8 text-red-500 min-w-8;
   }
   .secondary-icons {
-    @apply w-6 text-stone-50;
+    @apply w-6 text-gray-400 cursor-pointer;
   }
   .subreddit-name {
     @apply mr-1 text-lg font-semibold text-gray-900 dark:text-white;
@@ -104,11 +102,16 @@
     @apply text-sm font-normal text-gray-400 dark:text-gray-500;
   }
   .post-title {
-    @apply mb-4 text-base font-normal text-gray-500 dark:text-gray-400;
+    @apply w-full mb-4 text-lg font-normal text-gray-800 dark:text-gray-300;
   }
-  .post-icons {
-    @apply flex flex-row items-center justify-between w-full;
-    grid-area: icons;
+  .post-description {
+    @apply text-gray-300;
+  }
+  .comments-group {
+    @apply flex flex-row-reverse gap-2 mt-4 mr-1;
+  }
+  .comment-number {
+    @apply self-start text-gray-800 cursor-pointer justify-self-start dark:text-gray-400;
   }
 
   /* Pagination / Searchbar */
@@ -152,7 +155,7 @@
 
   /* Logos / SVG / Assetts */
   .logo-wrapper {
-    @apply sticky top-0 z-10 flex flex-col w-full mx-4 my-4 border-b bg-slate-800 border-slate-500;
+    @apply flex flex-col w-full mx-4 my-4 border-b shadow-lg bg-slate-800 border-slate-500;
   }
   .logo-container {
     @apply self-center w-1/5 mt-5 mb-12 justify-self-center;

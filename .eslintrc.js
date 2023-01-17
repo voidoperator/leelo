@@ -11,6 +11,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/prop-types': 0,
+    'no-unused-vars': 0,
+    'no-param-reassign': 0,
     'jsx-a11y/label-has-associated-control': [
       'error',
       {

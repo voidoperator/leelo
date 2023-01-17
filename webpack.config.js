@@ -7,9 +7,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 process.env.NODE_ENV = 'development';
 module.exports = ({ mode } = { mode: 'production' }) => {
-  // eslint-disable-next-line no-console
-  console.log(`mode is: ${mode}`);
-
   return merge({
     mode: 'development',
     resolve: {
@@ -46,7 +43,7 @@ module.exports = ({ mode } = { mode: 'production' }) => {
           use: ['style-loader', 'css-loader', 'sass-loader'],
         },
         {
-          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          test: /\.(woff|woff2|eot|ttf|otf|json)$/i,
           type: 'asset/resource',
         },
         {
