@@ -89,7 +89,10 @@
     @apply flex flex-row gap-1;
   }
   .subreddit-icon {
-    @apply w-8 h-8 text-white;
+    @apply w-8 text-stone-50;
+  }
+  .secondary-icons {
+    @apply w-6 text-stone-50;
   }
   .subreddit-name {
     @apply mr-1 text-lg font-semibold text-gray-900 dark:text-white;
@@ -172,6 +175,9 @@
   }
   .leelo-eyes {
     @apply fill-red-500;
+  }
+  .nav-logo {
+    @apply mt-4;
   }
   .nav-logo > svg {
     box-sizing: content-box;

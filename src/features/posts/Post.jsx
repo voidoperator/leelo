@@ -1,5 +1,10 @@
 import React from 'react';
-import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
+import {
+  ArrowUpCircleIcon,
+  ChatBubbleOvalLeftEllipsisIcon,
+  GlobeAltIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/24/solid';
 
 export function Post() {
   const upVotes = 500;
@@ -10,6 +15,7 @@ export function Post() {
     <div className="post-wrapper">
       <div className="post-grid">
         <div className="upvotes">
+          <ArrowUpCircleIcon className="w-8 secondary-icons" />
           <span className="votes">{upVotes}</span>
           <span className="votes-deco" />
         </div>
@@ -18,7 +24,7 @@ export function Post() {
             <QuestionMarkCircleIcon className="subreddit-icon" />
             <div className="subreddit-name">{subredditName}</div>
           </div>
-          <author className="post-author">Posted by u/someone</author>
+          <span className="post-author">Posted by u/someone</span>
           <time className="post-date">{postTime}</time>
         </div>
         <div className="post-content">
@@ -43,8 +49,8 @@ export function Post() {
           </a>
         </div>
         <div className="post-icons">
-          <QuestionMarkCircleIcon className="subreddit-icon" />
-          <QuestionMarkCircleIcon className="subreddit-icon" />
+          <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
+          <GlobeAltIcon className="secondary-icons" />
         </div>
       </div>
     </div>
