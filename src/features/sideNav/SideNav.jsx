@@ -13,7 +13,7 @@ import { SymbolLogo } from '../../Components/Logos';
 
 export function SideNav(props) {
   const { routes } = props;
-  const inActiveClassName = 'navlink-btn';
+  const inActiveClassName = 'navlink-link';
   const activeClassName = `${inActiveClassName} active`;
 
   return (

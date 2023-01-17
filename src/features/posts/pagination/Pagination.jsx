@@ -3,7 +3,7 @@ import React from 'react';
 export function Pagination() {
   return (
     <div className="pagination" aria-label="page navigation">
-      <ul className="inline-flex -space-x-px pagination">
+      <ul className="inline-flex -space-x-px vz-spacing">
         <li>
           <a
             href="/"
