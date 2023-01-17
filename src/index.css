@@ -20,7 +20,7 @@
     grid-area: sidenav;
   }
   .sidenav-wrapper {
-    @apply sticky top-0 z-10 flex flex-col items-stretch justify-start w-full h-full;
+    @apply sticky top-0 z-10 flex flex-col items-stretch justify-start w-full h-full border-r border-slate-700;
   }
   .sidenav-wrapper > ul {
     @apply grow;
@@ -60,10 +60,10 @@
     @apply flex flex-col items-center justify-center mr-3 grow-0;
   }
   .votes {
-    @apply text-base text-red-500;
+    @apply text-base text-slate-300;
   }
   .votes-deco {
-    @apply w-0 h-full border border-red-500;
+    @apply w-0 h-full border border-slate-400;
   }
   .post-group {
     @apply flex flex-col items-center justify-center w-full grow;
@@ -76,21 +76,6 @@
   }
   .post-content > img {
     @apply w-full rounded-md;
-  }
-  .post-icons {
-    @apply flex flex-row items-end justify-between w-full;
-  }
-  .name-icon-wrapper {
-    @apply flex flex-row gap-1;
-  }
-  .subreddit-icon {
-    @apply w-8 text-gray-200;
-  }
-  .vote-icon {
-    @apply w-8 text-red-500 min-w-8;
-  }
-  .secondary-icons {
-    @apply w-6 text-gray-400 cursor-pointer;
   }
   .subreddit-name {
     @apply mr-1 text-lg font-semibold text-gray-900 dark:text-white;
@@ -121,7 +106,7 @@
 
   /* subreddits/menu */
   .subreddits-grid {
-    @apply grid h-screen overflow-x-hidden overflow-y-auto dark:bg-gray-900;
+    @apply grid h-screen overflow-x-hidden overflow-y-auto border-l dark:bg-gray-900 border-slate-700;
     grid-area: subreddits;
   }
   .subreddits-grid::-webkit-scrollbar {
@@ -154,15 +139,14 @@
   }
 
   /* Logos / SVG / Assetts */
+  a {
+    @apply transition duration-300;
+  }
   .logo-wrapper {
-    @apply flex flex-col w-full mx-4 my-4 border-b shadow-lg bg-slate-800 border-slate-500;
+    @apply flex flex-col w-full mx-4 my-4 border-b shadow-lg bg-slate-800 border-slate-700;
   }
   .logo-container {
     @apply self-center w-1/5 mt-5 mb-12 justify-self-center;
-  }
-
-  a {
-    @apply transition duration-300;
   }
   .nav-link-txt {
     @apply ml-3 text-stone-50;
@@ -190,5 +174,26 @@
   }
   .heroicons {
     @apply w-6 h-6 fill-stone-50;
+  }
+  .loading-status {
+    @apply self-center text-gray-400 w-14 h-14 animate-spin fill-red-500;
+  }
+  .error-status {
+    @apply flex p-4 mb-4 text-base text-red-400 bg-gray-800 border border-red-800 rounded-lg;
+  }
+  .subreddit-icon {
+    @apply w-8 text-gray-200;
+  }
+  .vote-icon {
+    @apply w-8 text-slate-300 min-w-8;
+  }
+  .secondary-icons {
+    @apply w-6 text-gray-400 cursor-pointer;
+  }
+  .post-icons {
+    @apply flex flex-row items-end justify-between w-full;
+  }
+  .name-icon-wrapper {
+    @apply flex flex-row gap-1;
   }
 }

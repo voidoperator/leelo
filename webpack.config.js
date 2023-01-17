@@ -30,6 +30,7 @@ module.exports = ({ mode } = { mode: 'production' }) => {
       hot: true,
       compress: true,
       historyApiFallback: true,
+      // https: true,
     },
     module: {
       rules: [
