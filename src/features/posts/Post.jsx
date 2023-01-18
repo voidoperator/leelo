@@ -33,7 +33,6 @@ export function Post(props) {
       fixedIcon = iconCopy.join('.');
     }
   }
-
   return (
     <div className="post-wrapper">
       <div className="upvotes">
@@ -46,7 +45,7 @@ export function Post(props) {
           <div className="name-icon-wrapper">
             {iconUrl && (
               <a
-                href={`https://reddit.com/${subredditName}`}
+                href={`https://www.reddit.com/${subredditName}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -60,7 +59,7 @@ export function Post(props) {
             )}
             {iconUrl === null && (
               <a
-                href={`https://reddit.com/${subredditName}`}
+                href={`https://www.reddit.com/${subredditName}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -68,14 +67,24 @@ export function Post(props) {
               </a>
             )}
             <a
-              href={`https://reddit.com/${subredditName}`}
+              href={`https://www.reddit.com/${subredditName}`}
               target="_blank"
               rel="noreferrer"
             >
               <div className="subreddit-name">{subredditName}</div>
             </a>
           </div>
-          <span className="post-author">Posted by u/{author}</span>
+          <span className="post-author">
+            Posted by
+            <a
+              href={`https://www.reddit.com/user/${author}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {` u/${author}`}
+            </a>
+            <span className="post-time">{`• ${postTime}`}</span>
+          </span>
         </div>
         <div className="post-content">
           <div className="post-title">{title}</div>

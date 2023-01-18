@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import RelativeTime from '@yaireo/relative-time';
 import {
   fetchRedditPosts,
   selectRedditPosts,
@@ -13,6 +14,7 @@ import { Post } from './Post';
 export function Posts() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const relTime = new RelativeTime({ locale: 'es' });
   const { redditPosts, isLoading, hasError, nextPage } =
     useSelector(selectRedditPosts);
   const currentPath = location.pathname;
@@ -43,6 +45,9 @@ export function Posts() {
           redditPosts.map((data) => {
             return data.map((post) => {
               const postPath = post.data;
+              const postTime = relTime.from(
+                new Date(postPath.created_utc * 1000)
+              );
               const iconUrl =
                 postPath.sr_detail.icon_img ||
                 postPath.sr_detail.community_icon;
@@ -59,7 +64,7 @@ export function Posts() {
                   title={postPath.title}
                   description={postPath.description}
                   isVideo={postPath.is_video}
-                  postTime={postPath.postTime}
+                  postTime={postTime}
                 />
               );
             });

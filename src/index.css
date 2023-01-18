@@ -50,6 +50,12 @@
     @apply sticky z-10 flex flex-col items-center min-w-full gap-4;
     top: -20px;
   }
+  .logo-wrapper {
+    @apply flex flex-col w-full mx-4 my-4 border-b shadow-lg bg-slate-800 border-slate-700;
+  }
+  .logo-container {
+    @apply self-center w-1/5 mt-5 mb-8 justify-self-center;
+  }
 
   /* post component */
   .post-wrapper {
@@ -60,7 +66,7 @@
     @apply flex flex-col items-center justify-center mr-3;
   }
   .votes {
-    @apply text-base text-slate-300;
+    @apply text-base text-slate-300 cursor-default;
   }
   .votes-deco {
     @apply w-0 h-full border border-slate-400;
@@ -81,10 +87,10 @@
     @apply pb-1 text-lg font-semibold text-gray-900 dark:text-white;
   }
   .post-author {
-    @apply text-sm font-normal text-gray-400 dark:text-gray-500;
+    @apply text-sm font-normal text-gray-400 mx-1;
   }
-  .post-date {
-    @apply text-sm font-normal text-gray-400 dark:text-gray-500;
+  .post-time {
+    @apply text-sm font-normal text-gray-400 mx-1;
   }
   .post-title {
     @apply w-full mb-4 text-lg font-normal text-gray-800 dark:text-gray-300;
@@ -145,12 +151,6 @@
   a {
     @apply transition duration-300;
   }
-  .logo-wrapper {
-    @apply flex flex-col w-full mx-4 my-4 border-b shadow-lg bg-slate-800 border-slate-700;
-  }
-  .logo-container {
-    @apply self-center w-1/5 mt-5 mb-12 justify-self-center;
-  }
   .nav-link-txt {
     @apply ml-3 text-stone-50;
   }
@@ -199,7 +199,10 @@
   .post-icons {
     @apply flex flex-row items-end justify-between w-full;
   }
+  .post-icons > a > svg {
+    @apply opacity-80 hover:opacity-100 hover:fill-stone-50 transition-all;
+  }
   .name-icon-wrapper {
-    @apply flex flex-row items-center justify-center gap-3;
+    @apply flex flex-row items-center justify-center gap-3 hover:opacity-80 transition-all;
   }
 }
