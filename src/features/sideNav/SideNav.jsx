@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
   HomeIcon,
   FireIcon,
@@ -10,9 +11,11 @@ import {
   QuestionMarkCircleIcon,
 } from '@heroicons/react/24/solid';
 import { SymbolLogo } from '../../Components/Logos';
+import { resetPosts } from '../posts/postsSlice';
 
 export function SideNav(props) {
   const { routes } = props;
+  const dispatch = useDispatch();
   const inActiveClassName = 'navlink-link';
   const activeClassName = `${inActiveClassName} active`;
 
@@ -29,6 +32,8 @@ export function SideNav(props) {
               return (
                 <li key={routeValue} className="navlink-list">
                   <NavLink
+                    value={routeName}
+                    onClick={() => dispatch(resetPosts())}
                     to={routes[routeName]()}
                     className={({ isActive }) =>
                       isActive ? activeClassName : inActiveClassName

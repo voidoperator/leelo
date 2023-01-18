@@ -2,25 +2,53 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchRedditPosts = createAsyncThunk(
   'reddit/fetchRedditPosts',
-  async (nextPage = '') => {
-    const apiEndPoint = 'https://www.reddit.com/';
+  async (page, { getState }) => {
+    const nextPage = page ? `?after=${page}` : '';
+    const state = getState().redditPosts;
+    const location = state.domainPath;
+    const apiEndPoint = `https://www.reddit.com${location}`;
     const jsonParam = '.json';
-    const nextPageParam = nextPage ? `?after=${nextPage}` : '';
-    const response = await fetch(`${apiEndPoint}${jsonParam}${nextPageParam}`);
+    const response = await fetch(`${apiEndPoint}${jsonParam}${nextPage}`);
     const json = await response.json();
     return json;
   }
 );
 
-export const fetchRedditPostsSlice = createSlice({
+const fetchRedditPostsSlice = createSlice({
   name: 'redditPosts',
   initialState: {
     isLoading: false,
     hasError: false,
+    domainPath: '',
     nextPage: '',
     redditPosts: [],
   },
-  reducers: {},
+  reducers: {
+    resetPosts: (state, action) => {
+      state.redditPosts = [];
+    },
+    setDomainPath: (state, action) => {
+      switch (action.payload) {
+        case '/':
+          state.domainPath = '/';
+          return;
+        case '/mejor':
+          state.domainPath = '/top';
+          return;
+        case '/popular':
+          state.domainPath = '/hot';
+          return;
+        case '/nuevo':
+          state.domainPath = '/new';
+          return;
+        case '/trending':
+          state.domainPath = '/rising';
+          return;
+        default:
+          state.domainPath = '/';
+      }
+    },
+  },
   extraReducers: {
     [fetchRedditPosts.pending]: (state, action) => {
       state.isLoading = true;
@@ -39,5 +67,6 @@ export const fetchRedditPostsSlice = createSlice({
   },
 });
 
+export const { setDomainPath, resetPosts } = fetchRedditPostsSlice.actions;
 export const selectRedditPosts = (state) => state.redditPosts;
 export default fetchRedditPostsSlice.reducer;
