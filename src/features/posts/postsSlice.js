@@ -7,7 +7,7 @@ export const fetchRedditPosts = createAsyncThunk(
     const state = getState().redditPosts;
     const location = state.domainPath;
     const apiEndPoint = `https://www.reddit.com${location}`;
-    const jsonParam = '.json';
+    const jsonParam = '.json?sr_detail=1';
     const response = await fetch(`${apiEndPoint}${jsonParam}${nextPage}`);
     const json = await response.json();
     return json;

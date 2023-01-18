@@ -9,19 +9,30 @@ import {
 
 export function Post(props) {
   const {
-    subredditName,
-    author,
-    numberOfComments,
-    url,
-    imagePreview,
-    upVotes,
     title,
+    author,
+    subredditName,
+    numberOfComments,
+    imagePreview,
     description,
+    upVotes,
+    url,
     isVideo,
     postTime,
+    iconUrl,
   } = props;
 
-  // console.log(thumbnailUrl);
+  let fixedIcon = iconUrl;
+  if (iconUrl) {
+    const newIcon = iconUrl.split('.');
+    if (newIcon.length !== 5) {
+      const iconCopy = [...newIcon];
+      const extension = newIcon[3].split('?').splice(0, 1).join('');
+      iconCopy.splice(3, 1);
+      iconCopy.push(extension);
+      fixedIcon = iconCopy.join('.');
+    }
+  }
 
   return (
     <div className="post-wrapper">
@@ -33,11 +44,38 @@ export function Post(props) {
       <div className="post-group">
         <div className="post-info">
           <div className="name-icon-wrapper">
-            <QuestionMarkCircleIcon className="subreddit-icon" />
-            <div className="subreddit-name">{subredditName}</div>
+            {iconUrl && (
+              <a
+                href={`https://reddit.com/${subredditName}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src={fixedIcon}
+                  alt={title}
+                  onError={(e) => (e.target.style.display = 'none')}
+                />
+              </a>
+            )}
+            {iconUrl === null && (
+              <a
+                href={`https://reddit.com/${subredditName}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <QuestionMarkCircleIcon className="subreddit-icon" />
+              </a>
+            )}
+            <a
+              href={`https://reddit.com/${subredditName}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="subreddit-name">{subredditName}</div>
+            </a>
           </div>
           <span className="post-author">Posted by u/{author}</span>
-          <time className="post-date">{postTime}</time>
         </div>
         <div className="post-content">
           <div className="post-title">{title}</div>
@@ -46,12 +84,15 @@ export function Post(props) {
               src={imagePreview}
               onError={(e) => (e.target.style.display = 'none')}
               alt={title}
+              title={title}
             />
           )}
           {description && <div className="post-description">{description}</div>}
         </div>
         <div className="post-icons">
-          <GlobeAltIcon className="secondary-icons" />
+          <a href={`https://reddit.com${url}`} target="_blank" rel="noreferrer">
+            <GlobeAltIcon className="secondary-icons" />
+          </a>
           <div className="comments-group">
             <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
             <div className="comment-number">{numberOfComments}</div>

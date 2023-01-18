@@ -43,13 +43,17 @@ export function Posts() {
           redditPosts.map((data) => {
             return data.map((post) => {
               const postPath = post.data;
+              const iconUrl =
+                postPath.sr_detail.icon_img ||
+                postPath.sr_detail.community_icon;
               return (
                 <Post
+                  iconUrl={iconUrl}
                   key={postPath.id}
                   subredditName={postPath.subreddit_name_prefixed}
                   author={postPath.author}
                   numberOfComments={postPath.num_comments}
-                  url={postPath.url}
+                  url={postPath.permalink}
                   imagePreview={postPath.url_overridden_by_dest}
                   upVotes={postPath.score}
                   title={postPath.title}
