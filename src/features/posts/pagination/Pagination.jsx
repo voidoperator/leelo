@@ -1,12 +1,14 @@
 import React from 'react';
 
-export function Pagination() {
+export function Pagination(props) {
+  const { nextPage, handleNextPage } = props;
   return (
     <div className="flex flex-col items-center pagination">
-      <div className="inline-flex mt-2 pagination xs:mt-0">
+      <div className="flex mt-2 pagination">
         <button
+          onClick={() => handleNextPage(nextPage)}
           type="button"
-          className="px-4 py-2 text-sm font-medium text-gray-200 transition duration-300 bg-gray-600 border-gray-500 rounded-md hover:bg-gray-500"
+          className="pagination-button"
         >
           Mas
         </button>

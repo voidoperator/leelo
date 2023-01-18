@@ -103,6 +103,9 @@
   .pagination {
     @apply mx-4 my-4;
   }
+  .pagination-button {
+    @apply px-4 py-2 text-sm font-medium text-gray-200 transition duration-300 bg-gray-600 border-gray-500 rounded-md hover:bg-gray-500;
+  }
 
   /* subreddits/menu */
   .subreddits-grid {
@@ -174,6 +177,9 @@
   }
   .heroicons {
     @apply w-6 h-6 fill-stone-50;
+  }
+  .loading-wrapper {
+    @apply flex flex-col items-center justify-center w-full h-full;
   }
   .loading-status {
     @apply self-center text-gray-400 w-14 h-14 animate-spin fill-red-500;

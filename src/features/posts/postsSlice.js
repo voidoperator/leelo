@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchRedditPosts = createAsyncThunk(
   'reddit/fetchRedditPosts',
-  async () => {
-    const response = await fetch('https://www.reddit.com/.json');
+  async (nextPage = '') => {
+    const apiEndPoint = 'https://www.reddit.com/';
+    const jsonParam = '.json';
+    const nextPageParam = nextPage ? `?after=${nextPage}` : '';
+    const response = await fetch(`${apiEndPoint}${jsonParam}${nextPageParam}`);
     const json = await response.json();
-    return json.data.children;
+    return json;
   }
 );
 
@@ -14,6 +17,7 @@ export const fetchRedditPostsSlice = createSlice({
   initialState: {
     isLoading: false,
     hasError: false,
+    nextPage: '',
     redditPosts: [],
   },
   reducers: {},
@@ -25,7 +29,8 @@ export const fetchRedditPostsSlice = createSlice({
     [fetchRedditPosts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.hasError = false;
-      state.redditPosts.push(action.payload);
+      state.nextPage = action.payload.data.after;
+      state.redditPosts.push(action.payload.data.children);
     },
     [fetchRedditPosts.rejected]: (state, action) => {
       state.isLoading = false;
