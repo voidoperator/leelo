@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchRedditPosts = createAsyncThunk(
   'reddit/fetchRedditPosts',
   async (page, { getState }) => {
-    const nextPage = page ? `?after=${page}` : '';
+    const nextPage = page ? `&after=${page}` : '';
     const state = getState().redditPosts;
     const location = state.domainPath;
     const apiEndPoint = `https://www.reddit.com${location}`;
