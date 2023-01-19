@@ -1,13 +1,16 @@
 /* eslint-disable no-return-assign */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowUpCircleIcon,
   ChatBubbleOvalLeftEllipsisIcon,
   GlobeAltIcon,
   QuestionMarkCircleIcon,
 } from '@heroicons/react/24/solid';
+import { Comments } from './comments/Comments';
 
 export function Post(props) {
+  const [displayComments, setDisplayComments] = useState(false);
+
   const {
     title,
     author,
@@ -22,6 +25,7 @@ export function Post(props) {
     isVideo,
     videoUrl,
     videoSize,
+    id,
   } = props;
 
   let fixedIcon = iconUrl;
@@ -121,10 +125,19 @@ export function Post(props) {
             <GlobeAltIcon className="secondary-icons" />
           </a>
           <div className="comments-group">
-            <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
-            <div className="comment-number">{numOfComments}</div>
+            <button
+              onClick={() => setDisplayComments(!displayComments)}
+              type="button"
+              className="comments-group"
+            >
+              <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
+              <div className="comment-number">{numOfComments}</div>
+            </button>
           </div>
         </div>
+        {displayComments && (
+          <Comments id={id} url={url} displayComments={displayComments} />
+        )}
       </div>
     </div>
   );
