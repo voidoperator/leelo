@@ -71,7 +71,7 @@ export function Posts() {
                   url={postPath.permalink}
                   upVotes={postPath.score}
                   title={postPath.title}
-                  description={postPath.description}
+                  description={postPath.selftext}
                   postTime={postTime}
                   imageUrl={postPath.url_overridden_by_dest}
                   isVideo={postPath.is_video}

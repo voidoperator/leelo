@@ -35,11 +35,17 @@ export function Post(props) {
       fixedIcon = iconCopy.join('.');
     }
   }
+  const numOfComments =
+    numberOfComments >= 1000
+      ? `${(numberOfComments / 1000).toFixed(1)}k`
+      : numberOfComments.toString();
+  const numOfVotes =
+    upVotes >= 1000 ? `${(upVotes / 1000).toFixed(1)}k` : upVotes.toString();
   return (
     <div className="post-wrapper">
       <div className="upvotes">
         <ArrowUpCircleIcon className="vote-icon" />
-        <span className="votes">{upVotes}</span>
+        <span className="votes">{numOfVotes}</span>
         <span className="votes-deco" />
       </div>
       <div className="post-group">
@@ -116,7 +122,7 @@ export function Post(props) {
           </a>
           <div className="comments-group">
             <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
-            <div className="comment-number">{numberOfComments}</div>
+            <div className="comment-number">{numOfComments}</div>
           </div>
         </div>
       </div>
