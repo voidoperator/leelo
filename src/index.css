@@ -20,7 +20,7 @@
     @apply sticky top-0 z-10 flex flex-col items-stretch justify-start w-full h-full border-r border-slate-700;
   }
   .sidenav-wrapper > ul {
-    @apply grow;
+    @apply grow overflow-hidden;
   }
   .navlink-list {
     @apply mx-4 my-2;
@@ -147,7 +147,7 @@
     @apply flex flex-col items-start justify-start p-8 text-white bg-slate-700 rounded-xl;
   }
   .comments-wrapper {
-    @apply box-content flex flex-col self-start w-full h-full gap-1 cursor-default;
+    @apply box-content flex flex-col self-start w-full h-full gap-1 cursor-default mt-6;
   }
 
   /* Logos / SVG / Assetts */
@@ -170,7 +170,7 @@
     @apply fill-red-500;
   }
   .nav-logo {
-    @apply mt-4;
+    @apply mt-4 overflow-hidden;
   }
   .nav-logo > svg {
     box-sizing: content-box;

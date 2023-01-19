@@ -7,7 +7,6 @@ export const fetchComments = createAsyncThunk(
     const response = await fetch(apiEndPoint);
     const json = await response.json();
     const data = json[1].data.children;
-    console.log(data);
     return { id, data };
   }
 );

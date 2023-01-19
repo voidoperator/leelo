@@ -39,12 +39,15 @@ export function Post(props) {
       fixedIcon = iconCopy.join('.');
     }
   }
+
   const numOfComments =
     numberOfComments >= 1000
       ? `${(numberOfComments / 1000).toFixed(1)}k`
       : numberOfComments.toString();
+
   const numOfVotes =
     upVotes >= 1000 ? `${(upVotes / 1000).toFixed(1)}k` : upVotes.toString();
+
   return (
     <div className="post-wrapper">
       <div className="upvotes">
@@ -55,29 +58,23 @@ export function Post(props) {
       <div className="post-group">
         <div className="post-info">
           <div className="name-icon-wrapper">
-            {iconUrl && (
-              <a
-                href={`https://www.reddit.com/${subredditName}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+            <a
+              href={`https://www.reddit.com/${subredditName}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {iconUrl && (
                 <img
                   className="w-8 h-8 rounded-full"
                   src={fixedIcon}
                   alt={title}
                   onError={(e) => (e.target.style.display = 'none')}
                 />
-              </a>
-            )}
-            {iconUrl === null && (
-              <a
-                href={`https://www.reddit.com/${subredditName}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+              )}
+              {iconUrl === null && (
                 <QuestionMarkCircleIcon className="subreddit-icon" />
-              </a>
-            )}
+              )}
+            </a>
             <a
               href={`https://www.reddit.com/${subredditName}`}
               target="_blank"
@@ -87,7 +84,7 @@ export function Post(props) {
             </a>
           </div>
           <span className="post-author">
-            Posted by
+            Publicado por
             <a
               href={`https://www.reddit.com/user/${author}`}
               target="_blank"

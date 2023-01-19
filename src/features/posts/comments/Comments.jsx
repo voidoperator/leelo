@@ -9,12 +9,13 @@ import { ErrorCard } from '../../../Components/ErrorCard';
 export function Comments(props) {
   const { url, id } = props;
   const dispatch = useDispatch();
+  const { allComments, isLoading, hasError } = useSelector(selectComments);
 
   useEffect(() => {
+    if (allComments[id]) return;
     dispatch(fetchComments({ url, id }));
   }, [dispatch]);
 
-  const { allComments, isLoading, hasError } = useSelector(selectComments);
   const comments = allComments[id] || [];
 
   return (
@@ -42,7 +43,7 @@ export function Comments(props) {
           <div className="flex mt-2 pagination">
             <a
               href={`https://www.reddit.com${url}}`}
-              className="shadow-sm pagination-button"
+              className="shadow pagination-button"
               target="_blank"
               rel="noreferrer"
             >
