@@ -51,6 +51,16 @@ export function Posts() {
               const iconUrl =
                 postPath.sr_detail.icon_img ||
                 postPath.sr_detail.community_icon;
+              const isVideo = postPath.is_video;
+              const videoUrl = isVideo
+                ? postPath.media.reddit_video.fallback_url.split('?').shift()
+                : '';
+              const videoSize = isVideo
+                ? {
+                    height: postPath.media.reddit_video.height,
+                    width: postPath.media.reddit_video.height,
+                  }
+                : '';
               return (
                 <Post
                   iconUrl={iconUrl}
@@ -59,12 +69,14 @@ export function Posts() {
                   author={postPath.author}
                   numberOfComments={postPath.num_comments}
                   url={postPath.permalink}
-                  imagePreview={postPath.url_overridden_by_dest}
                   upVotes={postPath.score}
                   title={postPath.title}
                   description={postPath.description}
-                  isVideo={postPath.is_video}
                   postTime={postTime}
+                  imageUrl={postPath.url_overridden_by_dest}
+                  isVideo={postPath.is_video}
+                  videoUrl={videoUrl}
+                  videoSize={videoSize}
                 />
               );
             });

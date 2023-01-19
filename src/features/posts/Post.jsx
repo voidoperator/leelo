@@ -13,13 +13,15 @@ export function Post(props) {
     author,
     subredditName,
     numberOfComments,
-    imagePreview,
+    imageUrl,
     description,
     upVotes,
     url,
-    isVideo,
     postTime,
     iconUrl,
+    isVideo,
+    videoUrl,
+    videoSize,
   } = props;
 
   let fixedIcon = iconUrl;
@@ -88,13 +90,23 @@ export function Post(props) {
         </div>
         <div className="post-content">
           <div className="post-title">{title}</div>
-          {imagePreview && (
+          {imageUrl && !isVideo && (
             <img
-              src={imagePreview}
+              src={imageUrl}
               onError={(e) => (e.target.style.display = 'none')}
               alt={title}
               title={title}
             />
+          )}
+          {isVideo && (
+            <video
+              width={videoSize.width}
+              height={videoSize.height}
+              muted
+              controls
+            >
+              <source src={videoUrl} type="video/mp4" />
+            </video>
           )}
           {description && <div className="post-description">{description}</div>}
         </div>

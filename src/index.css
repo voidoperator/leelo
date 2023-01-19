@@ -83,6 +83,9 @@
   .post-content > img {
     @apply w-full rounded-md;
   }
+  .post-content > video {
+    @apply w-full rounded-md;
+  }
   .subreddit-name {
     @apply pb-1 text-lg font-semibold text-gray-900 dark:text-white;
   }
