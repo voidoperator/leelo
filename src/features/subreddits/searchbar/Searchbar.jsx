@@ -1,6 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchTerm } from './searchbarSlice';
 
 export function Searchbar() {
+  const dispatch = useDispatch();
+
+  const handleInput = ({ target }) => {
+    const { value } = target;
+    dispatch(setSearchTerm(value));
+  };
+
   return (
     <div className="searchbar-grid">
       <form>
@@ -26,10 +35,11 @@ export function Searchbar() {
             </svg>
           </div>
           <input
+            onChange={(event) => handleInput(event)}
             type="search"
             id="default-search"
             className="searchbar-input"
-            placeholder="busca subreddits..."
+            placeholder="busca..."
             required
           />
           <button type="submit" className="search-btn">

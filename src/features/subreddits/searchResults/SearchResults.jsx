@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function SearchResults() {
+export function SearchResults(props) {
   return (
     <div className="searchresults-grid">
       <div className="searchresults-wrapper">
