@@ -1,7 +1,9 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 export function Comment(props) {
   const { text, author, upVotes, timePosted, isOP } = props;
+
   return (
     <div className="comment-container">
       <div className="avatar-author">
@@ -23,7 +25,11 @@ export function Comment(props) {
         </div>
         <span className="post-author">{author}</span>
       </div>
-      <div className="comment-author">{text}</div>
+      <div className="comment-author">
+        <ReactMarkdown disallowedElements={['a']} unwrapDisallowed>
+          {text}
+        </ReactMarkdown>
+      </div>
     </div>
   );
 }

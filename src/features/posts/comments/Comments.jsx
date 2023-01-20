@@ -26,7 +26,6 @@ export function Comments(props) {
         !hasError &&
         comments.map((comment) => {
           const commentPath = comment.data;
-          if (commentPath.author === 'AutoModerator') return;
           return (
             <Comment
               key={commentPath.id}
