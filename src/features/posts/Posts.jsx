@@ -16,7 +16,6 @@ import { Post } from './Post';
 export function Posts() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const relTime = new RelativeTime({ locale: 'es' });
   const { redditPosts, isLoading, hasError, nextPage } =
     useSelector(selectRedditPosts);
   const currentPath = location.pathname;
@@ -33,6 +32,11 @@ export function Posts() {
     dispatch(fetchRedditPosts(page));
   };
 
+  const handleTime = (time) => {
+    const relTime = new RelativeTime({ locale: 'es' });
+    return relTime.from(new Date(time * 1000));
+  };
+
   return (
     <main className="posts-grid">
       <div className="posts-wrapper">
@@ -47,9 +51,6 @@ export function Posts() {
           redditPosts.map((data) => {
             return data.map((post) => {
               const postPath = post.data;
-              const postTime = relTime.from(
-                new Date(postPath.created_utc * 1000)
-              );
               const iconUrl =
                 postPath.sr_detail.icon_img ||
                 postPath.sr_detail.community_icon;
@@ -74,11 +75,12 @@ export function Posts() {
                   upVotes={postPath.score}
                   title={postPath.title}
                   description={postPath.selftext}
-                  postTime={postTime}
+                  postTime={handleTime(postPath.created_utc)}
                   imageUrl={postPath.url_overridden_by_dest}
                   isVideo={postPath.is_video}
                   videoUrl={videoUrl}
                   videoSize={videoSize}
+                  handleTime={handleTime}
                   id={postPath.id}
                 />
               );

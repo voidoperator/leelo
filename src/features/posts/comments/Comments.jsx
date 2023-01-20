@@ -7,7 +7,7 @@ import { LoadingSpinner } from '../../../Components/LoadingSpinner';
 import { ErrorCard } from '../../../Components/ErrorCard';
 
 export function Comments(props) {
-  const { url, id } = props;
+  const { url, id, handleNumbers, handleTime } = props;
   const dispatch = useDispatch();
   const { allComments, isLoading, hasError } = useSelector(selectComments);
 
@@ -26,14 +26,17 @@ export function Comments(props) {
         !hasError &&
         comments.map((comment) => {
           const commentPath = comment.data;
+          const numOfVotes = handleNumbers(commentPath.ups);
+          const timePosted = handleTime(commentPath.created_utc);
           return (
             <Comment
               key={commentPath.id}
               text={commentPath.body}
               author={commentPath.author}
-              upVotes={commentPath.ups}
-              timePosted={commentPath.created_utc}
               isOP={commentPath.isSubmitter}
+              isMOD={commentPath.distinguished}
+              timePosted={timePosted}
+              upVotes={numOfVotes}
             />
           );
         })}

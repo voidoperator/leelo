@@ -25,6 +25,7 @@ export function Post(props) {
     isVideo,
     videoUrl,
     videoSize,
+    handleTime,
     id,
   } = props;
 
@@ -40,19 +41,17 @@ export function Post(props) {
     }
   }
 
-  const numOfComments =
-    numberOfComments >= 1000
-      ? `${(numberOfComments / 1000).toFixed(1)}k`
-      : numberOfComments.toString();
-
-  const numOfVotes =
-    upVotes >= 1000 ? `${(upVotes / 1000).toFixed(1)}k` : upVotes.toString();
+  const handleNumbers = (num) => {
+    const prettyNum =
+      num >= 1000 ? `${(num / 1000).toFixed(1)}k` : num.toString();
+    return prettyNum;
+  };
 
   return (
     <div className="post-wrapper">
       <div className="upvotes">
         <ArrowUpCircleIcon className="vote-icon" />
-        <span className="votes">{numOfVotes}</span>
+        <span className="votes">{handleNumbers(upVotes)}</span>
         <span className="votes-deco" />
       </div>
       <div className="post-group">
@@ -128,12 +127,19 @@ export function Post(props) {
               className="comments-group"
             >
               <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
-              <div className="comment-number">{numOfComments}</div>
+              <div className="comment-number">
+                {handleNumbers(numberOfComments)}
+              </div>
             </button>
           </div>
         </div>
         {displayComments && (
-          <Comments id={id} url={url} displayComments={displayComments} />
+          <Comments
+            id={id}
+            url={url}
+            handleNumbers={handleNumbers}
+            handleTime={handleTime}
+          />
         )}
       </div>
     </div>

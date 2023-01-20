@@ -101,7 +101,7 @@
     @apply text-gray-300;
   }
   .comments-group {
-    @apply flex flex-row-reverse gap-2 mt-4 mr-1;
+    @apply flex flex-row gap-2 mt-4 mr-1;
   }
   .comment-number {
     @apply self-start text-gray-800 cursor-pointer justify-self-start dark:text-gray-400;
@@ -112,14 +112,17 @@
     max-width: 94%;
     min-width: 91%;
   }
+  .comment-wrapper {
+    @apply flex flex-row justify-between p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md shadow-lg grow hover:border-gray-600;
+  }
   .avatar-author {
-    @apply flex flex-row items-center gap-2 mb-2 text-gray-400;
+    @apply flex flex-row items-center gap-2 text-gray-400;
   }
   .avatar-svg {
     @apply relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600;
   }
   .comment-author {
-    @apply text-base text-gray-300 post-author;
+    @apply text-base text-gray-300;
   }
 
   /* Pagination / Searchbar */
