@@ -16,7 +16,6 @@ const commentsSlice = createSlice({
   initialState: {
     isLoading: false,
     hasError: false,
-    dispTorFcomments: false,
     allComments: {},
   },
   reducers: {

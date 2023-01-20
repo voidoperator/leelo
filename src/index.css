@@ -20,7 +20,7 @@
     @apply sticky top-0 z-10 flex flex-col items-stretch justify-start w-full h-full border-r border-slate-700;
   }
   .sidenav-wrapper > ul {
-    @apply grow overflow-hidden;
+    @apply overflow-hidden grow;
   }
   .navlink-list {
     @apply mx-4 my-2;
@@ -56,20 +56,22 @@
 
   /* post component */
   .post-wrapper {
-    @apply flex flex-row pt-5 pb-4 pl-2 pr-8 shadow-lg rounded-xl bg-slate-700 border border-slate-700 hover:border-gray-500 transition-all;
+    @apply flex flex-row pt-5 pb-4 pl-2 pr-8 transition-all border shadow-lg rounded-xl bg-slate-700 border-slate-700 hover:border-gray-500;
     width: 80%;
+    max-width: 850px;
   }
   .upvotes {
     @apply flex flex-col items-center justify-center mr-3;
   }
   .votes {
-    @apply text-base text-slate-300 cursor-default;
+    @apply text-base cursor-default text-slate-300;
   }
   .votes-deco {
     @apply w-0 h-full border border-slate-400;
   }
   .post-group {
-    @apply flex flex-col items-center justify-center w-full grow;
+    @apply flex flex-col items-center justify-center grow;
+    width: 95%;
   }
   .post-info {
     @apply flex flex-col items-start self-start justify-center gap-1;
@@ -87,10 +89,10 @@
     @apply pb-1 text-lg font-semibold text-gray-900 dark:text-white;
   }
   .post-author {
-    @apply text-sm font-normal text-gray-400 mx-1;
+    @apply mx-1 text-sm font-normal text-gray-400;
   }
   .post-time {
-    @apply text-sm font-normal text-gray-400 mx-1;
+    @apply mx-1 text-sm font-normal text-gray-400;
   }
   .post-title {
     @apply w-full mb-4 text-lg font-normal text-gray-800 dark:text-gray-300;
@@ -103,6 +105,21 @@
   }
   .comment-number {
     @apply self-start text-gray-800 cursor-pointer justify-self-start dark:text-gray-400;
+  }
+  .comment-container {
+    @apply flex flex-col p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md shadow-lg grow hover:border-gray-600;
+    width: 94%;
+    max-width: 94%;
+    min-width: 91%;
+  }
+  .avatar-author {
+    @apply flex flex-row items-center gap-2 mb-2 text-gray-400;
+  }
+  .avatar-svg {
+    @apply relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600;
+  }
+  .comment-author {
+    @apply text-base text-gray-300 post-author;
   }
 
   /* Pagination / Searchbar */
@@ -147,7 +164,7 @@
     @apply flex flex-col items-start justify-start p-8 text-white bg-slate-700 rounded-xl;
   }
   .comments-wrapper {
-    @apply box-content flex flex-col self-start w-full h-full gap-1 cursor-default mt-6;
+    @apply box-content flex flex-col self-start w-full h-full gap-1 mt-6 cursor-default;
   }
 
   /* Logos / SVG / Assetts */
@@ -185,7 +202,7 @@
     @apply flex flex-col items-center justify-center w-full h-full;
   }
   .loading-status {
-    @apply self-center text-gray-400 w-14 h-14 animate-spin fill-red-500;
+    @apply self-center text-gray-400 w-14 h-14 animate-spin fill-blue-400;
   }
   .error-status {
     @apply flex p-4 mb-4 text-base text-red-400 bg-gray-800 border border-red-800 rounded-lg;
@@ -203,9 +220,9 @@
     @apply flex flex-row items-end justify-between w-full;
   }
   .post-icons > a > svg {
-    @apply opacity-80 hover:opacity-100 hover:fill-stone-50 transition-all;
+    @apply transition-all opacity-80 hover:opacity-100 hover:fill-stone-50;
   }
   .name-icon-wrapper {
-    @apply flex flex-row items-center justify-center gap-3 hover:opacity-80 transition-all;
+    @apply flex flex-row items-center justify-center gap-3 transition-all hover:opacity-80;
   }
 }
