@@ -5,9 +5,10 @@ import { fetchComments, selectComments } from './commentsSlice';
 import { Comment } from './Comment';
 import { LoadingSpinner } from '../../../Components/LoadingSpinner';
 import { ErrorCard } from '../../../Components/ErrorCard';
+import { fixTime, fixNumber } from '../../../util/utilities';
 
 export function Comments(props) {
-  const { url, id, handleNumbers, handleTime } = props;
+  const { url, id } = props;
   const dispatch = useDispatch();
   const { allComments, isLoading, hasError } = useSelector(selectComments);
 
@@ -26,8 +27,6 @@ export function Comments(props) {
         !hasError &&
         comments.map((comment) => {
           const commentPath = comment.data;
-          const numOfVotes = handleNumbers(commentPath.ups);
-          const timePosted = handleTime(commentPath.created_utc);
           return (
             <Comment
               key={commentPath.id}
@@ -35,8 +34,8 @@ export function Comments(props) {
               author={commentPath.author}
               isOP={commentPath.isSubmitter}
               isMOD={commentPath.distinguished}
-              timePosted={timePosted}
-              upVotes={numOfVotes}
+              timePosted={fixTime(commentPath.created_utc)}
+              upVotes={fixNumber(commentPath.ups)}
             />
           );
         })}

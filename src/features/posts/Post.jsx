@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import React, { useState } from 'react';
 import {
   ArrowUpCircleIcon,
@@ -6,11 +5,11 @@ import {
   GlobeAltIcon,
   QuestionMarkCircleIcon,
 } from '@heroicons/react/24/solid';
+import { fixImgUrl, fixNumber, handleDisplayError } from '../../util/utilities';
 import { Comments } from './comments/Comments';
 
 export function Post(props) {
   const [displayComments, setDisplayComments] = useState(false);
-
   const {
     title,
     author,
@@ -25,33 +24,14 @@ export function Post(props) {
     isVideo,
     videoUrl,
     videoSize,
-    handleTime,
     id,
   } = props;
-
-  let fixedIcon = iconUrl;
-  if (iconUrl) {
-    const newIcon = iconUrl.split('.');
-    if (newIcon.length !== 5) {
-      const iconCopy = [...newIcon];
-      const extension = newIcon[3].split('?').splice(0, 1).join('');
-      iconCopy.splice(3, 1);
-      iconCopy.push(extension);
-      fixedIcon = iconCopy.join('.');
-    }
-  }
-
-  const handleNumbers = (num) => {
-    const prettyNum =
-      num >= 1000 ? `${(num / 1000).toFixed(1)}k` : num.toString();
-    return prettyNum;
-  };
 
   return (
     <div className="post-wrapper">
       <div className="upvotes">
         <ArrowUpCircleIcon className="vote-icon" />
-        <span className="votes">{handleNumbers(upVotes)}</span>
+        <span className="votes">{fixNumber(upVotes)}</span>
         <span className="votes-deco" />
       </div>
       <div className="post-group">
@@ -65,9 +45,9 @@ export function Post(props) {
               {iconUrl && (
                 <img
                   className="w-8 h-8 rounded-full"
-                  src={fixedIcon}
+                  src={fixImgUrl(iconUrl)}
                   alt={title}
-                  onError={(e) => (e.target.style.display = 'none')}
+                  onError={handleDisplayError}
                 />
               )}
               {iconUrl === null && (
@@ -99,7 +79,7 @@ export function Post(props) {
           {imageUrl && !isVideo && (
             <img
               src={imageUrl}
-              onError={(e) => (e.target.style.display = 'none')}
+              onError={handleDisplayError}
               alt={title}
               title={title}
             />
@@ -128,19 +108,12 @@ export function Post(props) {
             >
               <ChatBubbleOvalLeftEllipsisIcon className="secondary-icons" />
               <div className="comment-number">
-                {handleNumbers(numberOfComments)}
+                {fixNumber(numberOfComments)}
               </div>
             </button>
           </div>
         </div>
-        {displayComments && (
-          <Comments
-            id={id}
-            url={url}
-            handleNumbers={handleNumbers}
-            handleTime={handleTime}
-          />
-        )}
+        {displayComments && <Comments id={id} url={url} />}
       </div>
     </div>
   );

@@ -142,29 +142,35 @@
     display: none;
   }
   .searchbar-grid {
+    @apply box-content sticky top-0 z-10 h-full px-1 pt-3 bg-gray-900 shadow-lg;
     grid-area: searchbar;
   }
   .sub-grid {
     @apply sticky top-0 z-10 mx-4 my-4;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 75px 1fr 75px;
     grid-template-areas:
       'searchbar'
-      'searchresults';
+      'searchresults'
+      'pagination';
+    row-gap: 1.5rem;
+  }
+  .search-pagination {
+    grid-area: pagination;
   }
   .searchbar-input {
     @apply block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
   }
   .search-btn {
-    @apply transition duration-300 text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+    @apply transition duration-300 text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
   }
   .searchresults-grid {
     @apply grid items-baseline;
     grid-area: searchresults;
   }
   .searchresults-wrapper {
-    @apply flex flex-col items-start justify-start p-8 text-white bg-slate-700 rounded-xl;
+    @apply flex flex-col items-start justify-start text-white rounded-xl;
   }
   .comments-wrapper {
     @apply box-content flex flex-col self-start w-full h-full gap-1 mt-6 cursor-default;
@@ -209,6 +215,9 @@
   }
   .error-status {
     @apply flex p-4 mb-4 text-base text-red-400 bg-gray-800 border border-red-800 rounded-lg;
+  }
+  .no-results-status {
+    @apply flex p-4 mb-4 text-base text-orange-300 bg-gray-800 border border-orange-500 rounded-lg;
   }
   .subreddit-icon {
     @apply w-8 text-gray-200;

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import RelativeTime from '@yaireo/relative-time';
 import {
   fetchRedditPosts,
   selectRedditPosts,
   setDomainPath,
 } from './postsSlice';
+import { fixTime } from '../../util/utilities';
 import { LetterLogo } from '../../Components/Logos';
 import { LoadingSpinner } from '../../Components/LoadingSpinner';
 import { ErrorCard } from '../../Components/ErrorCard';
@@ -30,11 +30,6 @@ export function Posts() {
 
   const handleNextPage = (page) => {
     dispatch(fetchRedditPosts(page));
-  };
-
-  const handleTime = (time) => {
-    const relTime = new RelativeTime({ locale: 'es' });
-    return relTime.from(new Date(time * 1000));
   };
 
   return (
@@ -75,12 +70,11 @@ export function Posts() {
                   upVotes={postPath.score}
                   title={postPath.title}
                   description={postPath.selftext}
-                  postTime={handleTime(postPath.created_utc)}
+                  postTime={fixTime(postPath.created_utc)}
                   imageUrl={postPath.url_overridden_by_dest}
                   isVideo={postPath.is_video}
                   videoUrl={videoUrl}
                   videoSize={videoSize}
-                  handleTime={handleTime}
                   id={postPath.id}
                 />
               );
