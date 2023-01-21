@@ -7,6 +7,7 @@ import {
   fixNumber,
   handleDisplayError,
 } from '../../../util/utilities';
+import { DefaultRedditIcon } from '../../../Components/Logos';
 
 export function SearchResults() {
   // const dispatch = useDispatch();
@@ -18,23 +19,28 @@ export function SearchResults() {
         <ul className="w-full text-sm font-medium text-white bg-gray-700 border-gray-600 rounded-lg h-1/2">
           {allSearchResults.map((result, index) => {
             const { data } = result;
+            if (data.subscribers < 500) return null;
             const subs = fixNumber(data.subscribers) || '0';
-            let imgUrl = data.icon_img || '';
+            let imgUrl = data.icon_img || data.community_icon;
             if (imgUrl) imgUrl = fixImgUrl(imgUrl);
-            if (data.subreddit_type === 'restricted') return null;
             return (
               <li
                 key={`${data.id}${data.name}${index}`}
                 className="flex flex-col px-4 py-2 border-b border-gray-600 rounded-t-lg"
               >
                 <div className="flex flex-row items-center justify-start">
-                  <img
-                    src={imgUrl}
-                    alt={data.display_name}
-                    title={data.display_name}
-                    onError={handleDisplayError}
-                    className="w-8 h-8 rounded-full"
-                  />
+                  {imgUrl ? (
+                    <img
+                      src={imgUrl}
+                      alt={data.display_name}
+                      title={data.display_name}
+                      onError={handleDisplayError}
+                      className="rounded-full w-7 h-7"
+                    />
+                  ) : (
+                    <DefaultRedditIcon styles="w-7 h-7 rounded-full" />
+                  )}
+                  <div>{data.display_name_prefixed}</div>
                   <div>{subs}</div>
                 </div>
                 <div>{data.title}</div>

@@ -3,9 +3,9 @@ import {
   ArrowUpCircleIcon,
   ChatBubbleOvalLeftEllipsisIcon,
   GlobeAltIcon,
-  QuestionMarkCircleIcon,
 } from '@heroicons/react/24/solid';
 import { fixImgUrl, fixNumber, handleDisplayError } from '../../util/utilities';
+import { DefaultRedditIcon } from '../../Components/Logos';
 import { Comments } from './comments/Comments';
 
 export function Post(props) {
@@ -42,16 +42,15 @@ export function Post(props) {
               target="_blank"
               rel="noreferrer"
             >
-              {iconUrl && (
+              {iconUrl ? (
                 <img
                   className="w-8 h-8 rounded-full"
                   src={fixImgUrl(iconUrl)}
                   alt={title}
                   onError={handleDisplayError}
                 />
-              )}
-              {iconUrl === null && (
-                <QuestionMarkCircleIcon className="subreddit-icon" />
+              ) : (
+                <DefaultRedditIcon styles="subreddit-icon" />
               )}
             </a>
             <a
