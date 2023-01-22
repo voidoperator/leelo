@@ -23,21 +23,22 @@ export function Searchbar(props) {
           Search
         </label>
         <div className="relative">
-          <div className="magnifying-position">
+          {/* <div className="magnifying-position">
             <MagnifyingGlassIcon className="w-6 h-6 text-gray-400" />
-          </div>
+          </div> */}
           <input
             required
             type="search"
             id="default-search"
             value={searchTerm}
             onInput={(event) => dispatch(setSearchTerm(event.target.value))}
+            placeholder="encuentra subreddits..."
             className="searchbar-input"
             minLength={3}
             min={3}
           />
           <button type="submit" className="search-btn">
-            busca
+            <MagnifyingGlassIcon className="w-6 h-5 text-gray-100" />
           </button>
         </div>
       </form>

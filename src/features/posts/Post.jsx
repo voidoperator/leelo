@@ -13,6 +13,7 @@ import {
 } from '../../util/utilities';
 import { DefaultRedditIcon } from '../../Components/Logos';
 import { Comments } from './comments/Comments';
+import { YoutubeEmbed } from '../../Components/YoutubeEmbed';
 
 export function Post(props) {
   const [displayComments, setDisplayComments] = useState(false);
@@ -29,6 +30,8 @@ export function Post(props) {
     iconUrl,
     isVideo,
     isGallery,
+    isYoutube,
+    youtubeUrl,
     videoUrl,
     videoSize,
     galleryContent,
@@ -38,6 +41,10 @@ export function Post(props) {
   let gallery;
   if (isGallery) {
     gallery = getUrlsForGallery(galleryContent) || '';
+  }
+  let youtubeId;
+  if (isYoutube) {
+    [, youtubeId] = youtubeUrl.split('=');
   }
 
   return (
@@ -118,6 +125,7 @@ export function Post(props) {
                 />
               );
             })}
+          {isYoutube && <YoutubeEmbed embedId={youtubeId} />}
           {description && (
             <div className="post-description">
               <ReactMarkdown disallowedElements={['a']} unwrapDisallowed>

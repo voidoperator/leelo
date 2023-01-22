@@ -57,6 +57,12 @@ export function Posts() {
                     width: data.media.reddit_video.height,
                   }
                 : '';
+              let isYoutube = false;
+              if (data.secure_media) {
+                if (data.secure_media.type === 'youtube.com') {
+                  isYoutube = true;
+                }
+              }
               return (
                 <Post
                   iconUrl={iconUrl}
@@ -75,6 +81,8 @@ export function Posts() {
                   galleryContent={data.media_metadata}
                   videoUrl={videoUrl}
                   videoSize={videoSize}
+                  isYoutube={isYoutube}
+                  youtubeUrl={data.url}
                   id={data.id}
                 />
               );
