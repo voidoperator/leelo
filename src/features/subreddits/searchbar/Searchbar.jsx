@@ -10,37 +10,8 @@ export function Searchbar(props) {
   const { setCurrentSearchTerm } = props;
 
   const handleSubmit = (event) => {
-    const input = event.target;
     event.preventDefault();
-    if (searchTerm.length < 3) {
-      input.reportValidity();
-      return;
-    }
-    setCurrentSearchTerm(searchTerm);
-    dispatch(fetchSearchResults({ searchTerm }));
-    dispatch(setSearchTerm(''));
-  };
-
-  const handleInput = (event) => {
-    const { target, key } = event;
-    target.setCustomValidity('');
-
-    dispatch(setSearchTerm(target.value));
-    if (key === 'Enter') {
-      handleSubmit(event);
-    }
-  };
-
-  const handleClick = (event) => {
-    const input = event.target;
-    event.preventDefault();
-    if (searchTerm.length < 3) {
-      input.setCustomValidity(
-        'Please lengthen this text to 3 characters or more.'
-      );
-      input.reportValidity();
-      return;
-    }
+    setCurrentSearchTerm(event.target.value);
     dispatch(fetchSearchResults({ searchTerm }));
     dispatch(setSearchTerm(''));
   };
@@ -60,17 +31,12 @@ export function Searchbar(props) {
             type="search"
             id="default-search"
             value={searchTerm}
-            onInput={(event) => handleInput(event)}
-            onKeyDown={(event) => handleInput(event)}
+            onInput={(event) => dispatch(setSearchTerm(event.target.value))}
             className="searchbar-input"
             minLength={3}
             min={3}
           />
-          <button
-            onClick={(event) => handleClick(event)}
-            type="submit"
-            className="search-btn"
-          >
+          <button type="submit" className="search-btn">
             busca
           </button>
         </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 import { selectSearchResults, fetchSearchResults } from './searchResultsSlice';
 import {
   fixImgUrl,
