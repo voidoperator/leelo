@@ -88,10 +88,7 @@
   .subreddit-name {
     @apply pb-1 text-lg font-semibold text-gray-900 dark:text-white;
   }
-  .post-author {
-    @apply mx-1 text-sm font-normal text-gray-400;
-  }
-  .post-time {
+  .minimal-text {
     @apply mx-1 text-sm font-normal text-gray-400;
   }
   .post-title {
@@ -107,13 +104,13 @@
     @apply text-gray-800 cursor-pointer dark:text-gray-400;
   }
   .comment-container {
-    @apply flex flex-col items-center p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md shadow-lg hover:border-gray-600;
+    @apply flex flex-col items-center p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md hover:border-gray-600;
     width: 94%;
     max-width: 94%;
     min-width: 91%;
   }
   .comment-info-wrapper {
-    @apply box-content flex flex-row justify-between h-full p-2 mt-2 mb-6 break-words transition-all bg-gray-800 border border-gray-800 rounded-md shadow-lg cursor-default grow hover:border-gray-700;
+    @apply box-content flex flex-row justify-between h-full p-2 mt-2 mb-6 break-words transition-all bg-gray-800 border border-gray-800 rounded-md cursor-default grow hover:border-gray-700;
     width: 105%;
   }
   .comment-info-container {
@@ -177,10 +174,22 @@
     @apply flex flex-col items-start justify-start text-white rounded-xl;
   }
   .search-result-list {
-    @apply box-content flex flex-col w-full gap-2 text-sm font-medium text-white bg-gray-700 rounded-lg;
+    @apply box-content flex flex-col w-full gap-2 text-sm font-medium text-white bg-transparent rounded-lg;
   }
   .search-result {
-    @apply flex flex-col px-4 py-2 rounded-t-lg hover:cursor-pointer hover:border-gray-400;
+    @apply gap-1 flex flex-col py-2 pl-2 pr-2.5 border bg-gray-700 border-y-gray-600 border-x-gray-500 shadow rounded-lg hover:cursor-pointer hover:border-gray-400 hover:border;
+  }
+  .search-sr-icon {
+    @apply flex flex-row items-center justify-between gap-2;
+  }
+  .sr-name {
+    @apply overflow-hidden font-medium text-gray-200;
+  }
+  .sr-sub-count {
+    @apply font-light text-gray-400;
+  }
+  .result-description {
+    @apply;
   }
 
   /* Logos / SVG / Assetts */
@@ -243,5 +252,8 @@
   }
   .name-icon-wrapper {
     @apply flex flex-row items-center justify-center gap-3 transition-all hover:opacity-80;
+  }
+  .magnifying-position {
+    @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none;
   }
 }

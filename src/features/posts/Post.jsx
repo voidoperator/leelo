@@ -61,7 +61,7 @@ export function Post(props) {
               <div className="subreddit-name">{subredditName}</div>
             </a>
           </div>
-          <span className="post-author">
+          <span className="minimal-text">
             Publicado por
             <a
               href={`https://www.reddit.com/user/${author}`}
@@ -70,7 +70,7 @@ export function Post(props) {
             >
               {` u/${author}`}
             </a>
-            <span className="post-time">{`• ${postTime}`}</span>
+            <span className="minimal-text">{`• ${postTime}`}</span>
           </span>
         </div>
         <div className="post-content">

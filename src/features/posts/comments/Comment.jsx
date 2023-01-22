@@ -38,17 +38,17 @@ export function Comment(props) {
             </div>
           </div>
           {isOP && (
-            <span className={`mx-0 text-xs ${avatarStyle} post-author`}>
+            <span className={`mx-0 text-xs ${avatarStyle} minimal-text`}>
               OP
             </span>
           )}
           {isMOD && (
-            <span className={`mx-0 text-xs ${avatarStyle} post-author`}>
+            <span className={`mx-0 text-xs ${avatarStyle} minimal-text`}>
               MOD
             </span>
           )}
-          <span className="mx-0 post-author">{author}</span>
-          <div className="mx-0 text-xs post-author">{timePosted}</div>
+          <span className="mx-0 minimal-text">{author}</span>
+          <div className="mx-0 text-xs minimal-text">{timePosted}</div>
         </a>
         <a
           className="comment-upvotes"
