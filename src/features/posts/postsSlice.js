@@ -44,7 +44,7 @@ const fetchRedditPostsSlice = createSlice({
           state.domainPath = '/rising/.json?sr_detail=1';
           return;
         default:
-          state.domainPath = `/${action.payload}/top/.json?sr_detail=1&t=week`;
+          state.domainPath = `/${action.payload}/hot/.json?sr_detail=1`;
           break;
       }
     },

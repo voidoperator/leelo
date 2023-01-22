@@ -43,39 +43,39 @@ export function Posts() {
           </div>
         </div>
         {redditPosts &&
-          redditPosts.map((data) => {
-            return data.map((post) => {
-              const postPath = post.data;
+          redditPosts.map((post) => {
+            return post.map(({ data }) => {
               const iconUrl =
-                postPath.sr_detail.icon_img ||
-                postPath.sr_detail.community_icon;
-              const isVideo = postPath.is_video;
+                data.sr_detail.icon_img || data.sr_detail.community_icon;
+              const isVideo = data.is_video;
               const videoUrl = isVideo
-                ? postPath.media.reddit_video.fallback_url.split('?').shift()
+                ? data.media.reddit_video.fallback_url.split('?').shift()
                 : '';
               const videoSize = isVideo
                 ? {
-                    height: postPath.media.reddit_video.height,
-                    width: postPath.media.reddit_video.height,
+                    height: data.media.reddit_video.height,
+                    width: data.media.reddit_video.height,
                   }
                 : '';
               return (
                 <Post
                   iconUrl={iconUrl}
-                  key={postPath.id}
-                  subredditName={postPath.subreddit_name_prefixed}
-                  author={postPath.author}
-                  numberOfComments={postPath.num_comments}
-                  url={postPath.permalink}
-                  upVotes={postPath.score}
-                  title={postPath.title}
-                  description={postPath.selftext}
-                  postTime={fixTime(postPath.created_utc)}
-                  imageUrl={postPath.url_overridden_by_dest}
-                  isVideo={postPath.is_video}
+                  key={data.id}
+                  subredditName={data.subreddit_name_prefixed}
+                  author={data.author}
+                  numberOfComments={data.num_comments}
+                  url={data.permalink}
+                  upVotes={data.score}
+                  title={data.title}
+                  description={data.selftext}
+                  postTime={fixTime(data.created_utc)}
+                  imageUrl={data.url_overridden_by_dest}
+                  isVideo={data.is_video}
+                  isGallery={data.is_gallery}
+                  galleryContent={data.media_metadata}
                   videoUrl={videoUrl}
                   videoSize={videoSize}
-                  id={postPath.id}
+                  id={data.id}
                 />
               );
             });

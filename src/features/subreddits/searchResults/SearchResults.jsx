@@ -28,7 +28,7 @@ export function SearchResults() {
       <ul className="search-result-list">
         {allSearchResults
           .filter(({ data }) => {
-            return data.subscribers > 500;
+            return data.subscribers > 100;
           })
           .map(({ data }, index) => {
             const subs = fixNumber(data.subscribers);

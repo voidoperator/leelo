@@ -5,7 +5,12 @@ import {
   ChatBubbleOvalLeftEllipsisIcon,
   GlobeAltIcon,
 } from '@heroicons/react/24/solid';
-import { fixImgUrl, fixNumber, handleDisplayError } from '../../util/utilities';
+import {
+  fixImgUrl,
+  fixNumber,
+  getUrlsForGallery,
+  handleDisplayError,
+} from '../../util/utilities';
 import { DefaultRedditIcon } from '../../Components/Logos';
 import { Comments } from './comments/Comments';
 
@@ -23,10 +28,17 @@ export function Post(props) {
     postTime,
     iconUrl,
     isVideo,
+    isGallery,
     videoUrl,
     videoSize,
+    galleryContent,
     id,
   } = props;
+
+  let gallery;
+  if (isGallery) {
+    gallery = getUrlsForGallery(galleryContent) || '';
+  }
 
   return (
     <div className="post-wrapper">
@@ -94,6 +106,18 @@ export function Post(props) {
               <source src={videoUrl} type="video/mp4" />
             </video>
           )}
+          {isGallery &&
+            gallery.map((imgUrl, index) => {
+              return (
+                <img
+                  src={imgUrl}
+                  alt={title}
+                  title={title}
+                  key={`${id}${index}`}
+                  onError={handleDisplayError}
+                />
+              );
+            })}
           {description && (
             <div className="post-description">
               <ReactMarkdown disallowedElements={['a']} unwrapDisallowed>

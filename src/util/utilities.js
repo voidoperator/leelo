@@ -33,3 +33,17 @@ export const fixTime = (time) => {
 export const handleDisplayError = (e) => {
   e.target.style.display = 'none';
 };
+
+export const getUrlsForGallery = (data) => {
+  const urls = [];
+  const entries = Object.entries(data);
+  entries.forEach(([key, obj]) => {
+    if (!obj.s.u) {
+      return;
+    }
+    let url = obj.s.u;
+    url = url.split('&amp;').join('&');
+    urls.push(url);
+  });
+  return urls;
+};

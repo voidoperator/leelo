@@ -63,11 +63,14 @@
   .upvotes {
     @apply flex flex-col items-center justify-center mr-3;
   }
+  .upvotes > svg {
+    @apply text-slate-300;
+  }
   .votes {
-    @apply text-base cursor-default text-slate-300;
+    @apply my-1 text-sm font-medium cursor-default text-slate-300;
   }
   .votes-deco {
-    @apply w-0 h-full border border-slate-400;
+    @apply w-0 h-5 border border-slate-400 grow;
   }
   .post-group {
     @apply flex flex-col items-center justify-center grow;
@@ -239,7 +242,7 @@
     @apply w-8 h-8 text-gray-200;
   }
   .vote-icon {
-    @apply w-5 min-w-5 max-w-5 text-slate-300;
+    @apply w-8 min-w-8 max-w-8 text-slate-300;
   }
   .secondary-icons {
     @apply w-6 text-gray-400 cursor-pointer;
