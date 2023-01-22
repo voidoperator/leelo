@@ -104,25 +104,29 @@
     @apply flex flex-row gap-2 mt-4 mr-1;
   }
   .comment-number {
-    @apply self-start text-gray-800 cursor-pointer justify-self-start dark:text-gray-400;
+    @apply text-gray-800 cursor-pointer dark:text-gray-400;
   }
   .comment-container {
-    @apply flex flex-col p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md shadow-lg grow hover:border-gray-600;
+    @apply flex flex-col items-center p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md shadow-lg hover:border-gray-600;
     width: 94%;
     max-width: 94%;
     min-width: 91%;
   }
-  .comment-wrapper {
-    @apply flex flex-row justify-between p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md shadow-lg grow hover:border-gray-600;
+  .comment-info-wrapper {
+    @apply box-content flex flex-row justify-between h-full p-2 mt-2 mb-6 break-words transition-all bg-gray-800 border border-gray-800 rounded-md shadow-lg cursor-default grow hover:border-gray-700;
+    width: 105%;
   }
-  .avatar-author {
-    @apply flex flex-row items-center gap-2 text-gray-400;
+  .comment-info-container {
+    @apply flex flex-row items-center justify-between gap-2 text-gray-400;
+  }
+  .comment-upvotes {
+    @apply flex flex-row items-center gap-2 text-sm text-gray-400;
   }
   .avatar-svg {
     @apply relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600;
   }
-  .comment-author {
-    @apply text-base text-gray-300;
+  .comment-body {
+    @apply self-start px-4 mb-4 text-base text-gray-300;
   }
 
   /* Pagination / Searchbar */
@@ -172,8 +176,11 @@
   .searchresults-wrapper {
     @apply flex flex-col items-start justify-start text-white rounded-xl;
   }
-  .comments-wrapper {
-    @apply box-content flex flex-col self-start w-full h-full gap-1 mt-6 cursor-default;
+  .search-result-list {
+    @apply box-content flex flex-col w-full gap-2 text-sm font-medium text-white bg-gray-700 rounded-lg;
+  }
+  .search-result {
+    @apply flex flex-col px-4 py-2 rounded-t-lg hover:cursor-pointer hover:border-gray-400;
   }
 
   /* Logos / SVG / Assetts */
@@ -220,7 +227,7 @@
     @apply flex p-4 mb-4 text-base text-orange-300 bg-gray-800 border border-orange-500 rounded-lg;
   }
   .subreddit-icon {
-    @apply w-8 text-gray-200;
+    @apply w-8 h-8 text-gray-200;
   }
   .vote-icon {
     @apply min-w-8 max-w-8 text-slate-300;

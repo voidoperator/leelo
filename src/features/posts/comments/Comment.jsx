@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import { ArrowUpIcon } from '@heroicons/react/24/solid/';
 
 export function Comment(props) {
-  const { text, author, upVotes, timePosted, isOP, isMOD } = props;
+  const { text, author, upVotes, timePosted, isOP, isMOD, permalink } = props;
+  const commentUrl = `https://www.reddit.com${permalink}`;
   const avatarStyle = isOP
     ? 'text-blue-300'
     : isMOD
@@ -13,8 +14,13 @@ export function Comment(props) {
 
   return (
     <div className="comment-container">
-      <div className="comment-wrapper">
-        <div className="avatar-author">
+      <div className="comment-info-wrapper">
+        <a
+          href={`https://www.reddit.com/u/${author}`}
+          target="_blank"
+          rel="noreferrer"
+          className="comment-info-container"
+        >
           <div className="flex flex-row">
             <div className="avatar-svg">
               <svg
@@ -43,17 +49,27 @@ export function Comment(props) {
           )}
           <span className="mx-0 post-author">{author}</span>
           <div className="mx-0 text-xs post-author">{timePosted}</div>
-        </div>
-        <div className="avatar-author">
+        </a>
+        <a
+          className="comment-upvotes"
+          href={commentUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
           <ArrowUpIcon className="w-4 text-slate-400" />
-          <span className="post-author">{upVotes}</span>
-        </div>
+          <span className="comment-upvotes">{upVotes}</span>
+        </a>
       </div>
-      <div className="comment-author">
+      <a
+        className="comment-body"
+        href={commentUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
         <ReactMarkdown disallowedElements={['a']} unwrapDisallowed>
           {text}
         </ReactMarkdown>
-      </div>
+      </a>
     </div>
   );
 }

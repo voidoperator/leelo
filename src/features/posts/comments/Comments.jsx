@@ -36,6 +36,7 @@ export function Comments(props) {
               isMOD={commentPath.distinguished}
               timePosted={fixTime(commentPath.created_utc)}
               upVotes={fixNumber(commentPath.ups)}
+              permalink={commentPath.permalink}
             />
           );
         })}
