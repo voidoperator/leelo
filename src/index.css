@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (max-width: 1300px) {
+  .searchbar-input {
+    @apply placeholder-transparent;
+  }
+}
+@media (max-width: 900px) {
+  .nav-link-txt {
+    @apply hidden;
+  }
+  .navlink-link {
+    @apply justify-center;
+  }
+}
+@media (max-width: 850px) {
+  #react-root {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 150px 0;
+    grid-template-areas:
+      'body'
+      'sidenav'
+      'subreddits';
+    height: 100vh;
+    overflow: hidden;
+  }
+  .posts-grid {
+    @apply w-screen;
+    grid-area: body;
+    height: 90vh;
+  }
+  .sidenav-grid {
+    @apply w-screen;
+    grid-area: sidenav;
+  }
+  .nav-logo {
+    @apply hidden;
+  }
+  .sidenav-wrapper {
+    @apply border-0 border-transparent;
+  }
+  .sidenav-wrapper > ul {
+    @apply flex flex-row justify-around grow;
+  }
+  .navlink-list {
+    @apply py-4;
+  }
+  .navlink-link {
+    @apply p-4;
+  }
+}
+
 @layer components {
   /* main / body / root */
   #react-root {
@@ -13,7 +64,7 @@
   }
   /* sidenav */
   .sidenav-grid {
-    @apply h-screen dark:bg-gray-900;
+    @apply h-screen bg-gray-900;
     grid-area: sidenav;
   }
   .sidenav-wrapper {
@@ -26,15 +77,22 @@
     @apply mx-4 my-2;
   }
   .navlink-link {
-    @apply flex items-center p-2 text-base font-normal transition duration-300 rounded-lg text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700;
+    @apply flex items-center p-2 text-base font-normal transition duration-300 rounded-lg text-slate-900 hover:bg-slate-700 active:bg-slate-700 focus:active:bg-slate-700;
   }
   .active {
     @apply bg-slate-500;
   }
 
   /* posts/body */
+  .video-responsive {
+    @apply w-full h-full;
+  }
+  .video-responsive > iframe {
+    @apply w-full rounded-lg shadow-lg;
+    height: 480px;
+  }
   .posts-grid {
-    @apply h-screen overflow-x-hidden overflow-y-auto dark:bg-slate-800;
+    @apply h-screen overflow-x-hidden overflow-y-auto bg-slate-800;
     grid-area: body;
   }
   .posts-grid::-webkit-scrollbar {
@@ -44,11 +102,11 @@
     @apply flex flex-col items-center justify-between w-full h-full gap-4;
   }
   .header-logo {
-    @apply sticky z-10 flex flex-col items-center min-w-full gap-4;
+    @apply sticky z-10 flex flex-col items-center h-full min-w-full gap-4;
     top: -20px;
   }
   .logo-wrapper {
-    @apply flex flex-col w-full mx-4 my-4 border-b shadow-lg bg-slate-800 border-slate-700;
+    @apply flex flex-col w-full pt-5 pb-3 mx-4 mb-6 border-b shadow-lg bg-slate-900 border-slate-700;
   }
   .logo-container {
     @apply self-center w-1/5 mt-5 mb-8 justify-self-center;
@@ -89,13 +147,13 @@
     @apply w-full rounded-md;
   }
   .subreddit-name {
-    @apply pb-1 text-lg font-semibold text-gray-900 dark:text-white;
+    @apply pb-1 text-lg font-semibold text-white;
   }
   .minimal-text {
     @apply mx-1 text-sm font-normal text-gray-400;
   }
   .post-title {
-    @apply w-full mb-4 text-lg font-normal text-gray-800 break-words dark:text-gray-300;
+    @apply w-full mb-4 text-lg font-normal text-gray-300 break-words;
   }
   .post-description {
     @apply mt-4 text-gray-300 break-words;
@@ -104,7 +162,7 @@
     @apply flex flex-row gap-2 mt-4 mr-1;
   }
   .comment-number {
-    @apply text-gray-800 cursor-pointer dark:text-gray-400;
+    @apply text-gray-400 transition-all cursor-pointer hover:text-gray-200;
   }
   .comment-container {
     @apply flex flex-col items-center p-2 my-2 break-words transition-all border border-gray-700 rounded-md bg-slate-600 hover:border-gray-600;
@@ -123,7 +181,7 @@
     @apply flex flex-row items-center gap-2 text-sm text-gray-400;
   }
   .avatar-svg {
-    @apply relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600;
+    @apply relative w-6 h-6 overflow-hidden bg-gray-600 rounded-full;
   }
   .comment-body {
     @apply self-start px-4 mb-4 text-base text-gray-300;
@@ -139,7 +197,7 @@
 
   /* subreddits/menu */
   .subreddits-grid {
-    @apply grid h-screen overflow-x-hidden overflow-y-auto border-l dark:bg-gray-900 border-slate-700;
+    @apply grid h-screen overflow-x-hidden overflow-y-auto bg-gray-900 border-l border-slate-700;
     grid-area: subreddits;
   }
   .subreddits-grid::-webkit-scrollbar {
@@ -164,10 +222,10 @@
     grid-area: pagination;
   }
   .searchbar-input {
-    @apply block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+    @apply block w-full p-4 pl-6 text-sm text-white placeholder-gray-500 bg-gray-700 border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500;
   }
   .search-btn {
-    @apply transition duration-300 text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+    @apply transition duration-300 text-white absolute right-2.5 bottom-2.5 font-medium rounded-lg text-sm px-3 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800;
   }
   .searchresults-grid {
     @apply grid items-baseline;
@@ -180,7 +238,7 @@
     @apply box-content flex flex-col w-full gap-2 text-sm font-medium text-white bg-transparent rounded-lg;
   }
   .search-result {
-    @apply gap-1 flex flex-col py-2 pl-2 pr-2.5 border bg-gray-700 border-y-gray-600 border-x-gray-500 shadow rounded-lg hover:cursor-pointer hover:border-gray-400 hover:border;
+    @apply gap-1 flex flex-col py-2 pl-2 transition-all pr-2.5 border bg-gray-700 border-y-gray-600 border-x-gray-500 shadow rounded-lg hover:cursor-pointer hover:border-gray-400 hover:border;
   }
   .search-sr-icon {
     @apply flex flex-row items-center justify-between gap-2;
@@ -245,13 +303,13 @@
     @apply w-8 min-w-8 max-w-8 text-slate-300;
   }
   .secondary-icons {
-    @apply w-6 text-gray-400 cursor-pointer;
+    @apply w-6 text-gray-400 transition-all cursor-pointer hover:text-gray-200;
   }
   .post-icons {
     @apply flex flex-row items-end justify-between w-full;
   }
   .post-icons > a > svg {
-    @apply transition-all opacity-80 hover:opacity-100 hover:fill-stone-50;
+    @apply transition-all opacity-80 hover:opacity-100 hover:fill-gray-200;
   }
   .name-icon-wrapper {
     @apply flex flex-row items-center justify-center gap-3 transition-all hover:opacity-80;
