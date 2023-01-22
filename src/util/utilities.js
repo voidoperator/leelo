@@ -11,16 +11,17 @@ export const fixImgUrl = (url) => {
 };
 
 export const fixNumber = (num) => {
-  if (!num) return '0'; // If num is falsy, return 0
+  if (!num) return '0';
 
   let fixedNumber;
   if (num >= 1000 && num <= 999999) {
-    fixedNumber = `${(num / 1000).toFixed(1)}k`; // Divide by 1000 and add 'k'
+    fixedNumber = `${(num / 1000).toFixed(1)}k`;
   } else if (num >= 1000000) {
-    fixedNumber = `${(num / 1000000).toFixed(1)}m`; // Divide by 1000000 and add 'm'
+    fixedNumber = `${(num / 1000000).toFixed(1)}m`;
   } else {
-    fixedNumber = num.toString(); // If num is less than 1000 return the original number as string
+    fixedNumber = num.toString();
   }
+
   return fixedNumber;
 };
 

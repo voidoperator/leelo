@@ -3,12 +3,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchRedditPosts = createAsyncThunk(
   'reddit/fetchRedditPosts',
   async (page, { getState }) => {
+    const apiEndPoint = 'https://www.reddit.com';
     const nextPage = page ? `&after=${page}` : '';
     const state = getState().redditPosts;
     const location = state.domainPath;
-    const apiEndPoint = `https://www.reddit.com${location}`;
-    const jsonParam = '.json?sr_detail=1';
-    const response = await fetch(`${apiEndPoint}${jsonParam}${nextPage}`);
+    const response = await fetch(`${apiEndPoint}${location}${nextPage}`);
     const json = await response.json();
     return json;
   }
@@ -30,22 +29,23 @@ const fetchRedditPostsSlice = createSlice({
     setDomainPath: (state, action) => {
       switch (action.payload) {
         case '/':
-          state.domainPath = '/';
+          state.domainPath = '/.json?sr_detail=1';
           return;
         case '/mejor':
-          state.domainPath = '/top';
+          state.domainPath = '/top/.json?sr_detail=1';
           return;
         case '/popular':
-          state.domainPath = '/hot';
+          state.domainPath = '/hot/.json?sr_detail=1';
           return;
         case '/nuevo':
-          state.domainPath = '/new';
+          state.domainPath = '/new/.json?sr_detail=1';
           return;
         case '/trending':
-          state.domainPath = '/rising';
+          state.domainPath = '/rising/.json?sr_detail=1';
           return;
         default:
-          state.domainPath = '/';
+          state.domainPath = `/${action.payload}/top/.json?sr_detail=1&t=week`;
+          break;
       }
     },
   },

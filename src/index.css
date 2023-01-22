@@ -92,10 +92,10 @@
     @apply mx-1 text-sm font-normal text-gray-400;
   }
   .post-title {
-    @apply w-full mb-4 text-lg font-normal text-gray-800 dark:text-gray-300;
+    @apply w-full mb-4 text-lg font-normal text-gray-800 break-words dark:text-gray-300;
   }
   .post-description {
-    @apply text-gray-300;
+    @apply mt-4 text-gray-300 break-words;
   }
   .comments-group {
     @apply flex flex-row gap-2 mt-4 mr-1;
@@ -104,7 +104,7 @@
     @apply text-gray-800 cursor-pointer dark:text-gray-400;
   }
   .comment-container {
-    @apply flex flex-col items-center p-2 my-2 break-words transition-all bg-gray-700 border border-gray-700 rounded-md hover:border-gray-600;
+    @apply flex flex-col items-center p-2 my-2 break-words transition-all border border-gray-700 rounded-md bg-slate-600 hover:border-gray-600;
     width: 94%;
     max-width: 94%;
     min-width: 91%;
@@ -239,7 +239,7 @@
     @apply w-8 h-8 text-gray-200;
   }
   .vote-icon {
-    @apply min-w-8 max-w-8 text-slate-300;
+    @apply w-5 min-w-5 max-w-5 text-slate-300;
   }
   .secondary-icons {
     @apply w-6 text-gray-400 cursor-pointer;

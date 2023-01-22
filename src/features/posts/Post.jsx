@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import {
   ArrowUpCircleIcon,
   ChatBubbleOvalLeftEllipsisIcon,
@@ -93,7 +94,13 @@ export function Post(props) {
               <source src={videoUrl} type="video/mp4" />
             </video>
           )}
-          {description && <div className="post-description">{description}</div>}
+          {description && (
+            <div className="post-description">
+              <ReactMarkdown disallowedElements={['a']} unwrapDisallowed>
+                {description}
+              </ReactMarkdown>
+            </div>
+          )}
         </div>
         <div className="post-icons">
           <a href={`https://reddit.com${url}`} target="_blank" rel="noreferrer">
