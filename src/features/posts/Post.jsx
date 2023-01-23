@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
   ArrowUpCircleIcon,
@@ -8,6 +8,7 @@ import {
 import {
   fixImgUrl,
   fixNumber,
+  translateApi,
   getUrlsForGallery,
   handleDisplayError,
 } from '../../util/utilities';
@@ -16,6 +17,7 @@ import { Comments } from './comments/Comments';
 import { YoutubeEmbed } from '../../Components/YoutubeEmbed';
 
 export function Post(props) {
+  const [translatedText, setTranslatedText] = useState('');
   const [displayComments, setDisplayComments] = useState(false);
   const {
     title,
@@ -37,6 +39,15 @@ export function Post(props) {
     galleryContent,
     id,
   } = props;
+
+  useEffect(() => {
+    if (!title) return;
+    const translate = async () => {
+      const translation = await translateApi(title);
+      setTranslatedText(translation);
+    };
+    translate();
+  }, [title]);
 
   let gallery;
   if (isGallery) {
@@ -66,7 +77,8 @@ export function Post(props) {
                 <img
                   className="w-8 h-8 rounded-full"
                   src={fixImgUrl(iconUrl)}
-                  alt={title}
+                  alt={translatedText}
+                  title={subredditName}
                   onError={handleDisplayError}
                 />
               ) : (
@@ -94,13 +106,13 @@ export function Post(props) {
           </span>
         </div>
         <div className="post-content">
-          <div className="post-title">{title}</div>
+          <div className="post-title">{translatedText}</div>
           {imageUrl && !isVideo && (
             <img
               src={imageUrl}
               onError={handleDisplayError}
-              alt={title}
-              title={title}
+              alt={translatedText}
+              title={translatedText}
             />
           )}
           {isVideo && (
@@ -118,8 +130,8 @@ export function Post(props) {
               return (
                 <img
                   src={imgUrl}
-                  alt={title}
-                  title={title}
+                  alt={translatedText}
+                  title={translatedText}
                   key={`${id}${index}`}
                   onError={handleDisplayError}
                 />

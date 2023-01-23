@@ -1,9 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ArrowUpIcon } from '@heroicons/react/24/solid/';
+import { translateApi } from '../../../util/utilities';
 
 export function Comment(props) {
+  const [translatedText, setTranslatedText] = useState('');
   const { text, author, upVotes, timePosted, isOP, isMOD, permalink } = props;
   const commentUrl = `https://www.reddit.com${permalink}`;
   const avatarStyle = isOP
@@ -11,6 +13,15 @@ export function Comment(props) {
     : isMOD
     ? 'text-green-300'
     : 'text-gray-400';
+
+  useEffect(() => {
+    if (!text) return;
+    const translate = async () => {
+      const translation = await translateApi(text);
+      setTranslatedText(translation);
+    };
+    translate();
+  }, [text]);
 
   return (
     <div className="comment-container">
@@ -67,7 +78,7 @@ export function Comment(props) {
         rel="noreferrer"
       >
         <ReactMarkdown disallowedElements={['a']} unwrapDisallowed>
-          {text}
+          {translatedText}
         </ReactMarkdown>
       </a>
     </div>

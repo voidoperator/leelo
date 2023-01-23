@@ -1,4 +1,19 @@
+import axios from 'axios';
 import RelativeTime from '@yaireo/relative-time/relative-time.min';
+
+export const translateApi = async (text) => {
+  try {
+    const { data } = await axios.get(
+      `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=es&dt=t&q=${encodeURI(
+        text
+      )}`
+    );
+    const translation = data[0].map((item) => item[0]).join(' ');
+    return translation;
+  } catch {
+    return text;
+  }
+};
 
 export const fixImgUrl = (url) => {
   if (url.split('.').length !== 5) {

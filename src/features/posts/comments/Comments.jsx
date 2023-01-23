@@ -25,21 +25,24 @@ export function Comments(props) {
       {hasError && <ErrorCard />}
       {!isLoading &&
         !hasError &&
-        comments.map((comment) => {
-          const commentPath = comment.data;
-          return (
-            <Comment
-              key={commentPath.id}
-              text={commentPath.body}
-              author={commentPath.author}
-              isOP={commentPath.isSubmitter}
-              isMOD={commentPath.distinguished}
-              timePosted={fixTime(commentPath.created_utc)}
-              upVotes={fixNumber(commentPath.ups)}
-              permalink={commentPath.permalink}
-            />
-          );
-        })}
+        comments
+          .filter((comment) => !comment.data.locked)
+          .map((comment) => {
+            if (!comment.data) return;
+            const commentPath = comment.data;
+            return (
+              <Comment
+                key={commentPath.id}
+                text={commentPath.body}
+                author={commentPath.author}
+                isOP={commentPath.isSubmitter}
+                isMOD={commentPath.distinguished}
+                timePosted={fixTime(commentPath.created_utc)}
+                upVotes={fixNumber(commentPath.ups)}
+                permalink={commentPath.permalink}
+              />
+            );
+          })}
       {!isLoading && !hasError && (
         <div className="flex flex-col items-center pagination">
           <div className="flex mt-2 pagination">

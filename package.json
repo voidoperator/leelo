@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@thoughtbot/tailwindcss-aria-attributes": "^0.2.0",
     "@yaireo/relative-time": "^1.0.2",
+    "axios": "^1.2.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-import": "^15.1.0",

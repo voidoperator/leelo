@@ -153,13 +153,19 @@
     @apply mx-1 text-sm font-normal text-gray-400;
   }
   .post-title {
-    @apply w-full mb-4 text-lg font-normal text-gray-300 break-words;
+    @apply w-full mt-2 mb-4 text-lg font-normal text-gray-300 break-words;
   }
   .post-description {
-    @apply mt-4 text-gray-300 break-words;
+    @apply w-full mt-4 text-gray-300 break-words;
+  }
+  .post-description > p {
+    @apply w-full break-words;
   }
   .comments-group {
     @apply flex flex-row gap-2 mt-4 mr-1;
+  }
+  .comments-wrapper {
+    @apply w-full mt-4;
   }
   .comment-number {
     @apply text-gray-400 transition-all cursor-pointer hover:text-gray-200;
