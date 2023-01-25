@@ -1,46 +1,87 @@
-# Getting Started with Create React App and Redux
+<p align="center" style="fill:red;">
+  <img src="./readme_assets/leeloSymbolLogo.svg" alt="leelo symbol logo" title="Leelo" style="width:200px;"/><br>
+  <img src="./readme_assets/leeloLogoLetter.svg" alt="leelo symbol logo" title="Leelo" style="width:500px;"><br>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Leelo
 
-## Available Scripts
+A web app built with React, Redux, and powered by the Reddit and Google Translate APIs. The app provides a minimalistic version of Reddit, with all content translated to Spanish. Styled with Tailwind CSS and Tailwind Heroicons, and built with Webpack, Babel, and Axios.
 
-In the project directory, you can run:
+# Features
 
-### `npm start`
+- Reddit content displayed, provided by the Reddit JSON Api.
+- Titles, descriptions, and comments are all automatically translated to Spanish via Google Translate API.
+- Sidenav to access the "best", "hot", "new", and "rising" sections of the Reddit homepage.
+- Searchbar to look up specific subreddits and display their content.
+- Comment section from selected post.
+- Styling with Tailwind CSS and Tailwind Heroicons
+- Embedding of YouTube videos from Reddit with the YouTubeEmbed component
+- Loading and error state handling with custom card components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Screenshots
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## `Desktop`
 
-### `npm test`
+<p align="center" style="fill:red;">
+  <img src="./readme_assets/leeloDesktop.jpg" alt="desktop screenshot" title="Leelo Desktop Screenshot" style="max-width:1000px;"/>
+</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## `Tablet`
 
-### `npm run build`
+<p align="center" style="fill:red;">
+  <img src="./readme_assets/leeloTablet.jpg" alt="tablet screenshot" title="Leelo Tablet Screenshot" style="max-width:700px;"/>
+</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## `Mobile`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p align="center" style="fill:red;">
+  <img src="./readme_assets/leeloMobile.jpg" alt="mobile screenshot" title="Leelo Mobile Screenshot" style="max-width:500px;"/>
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## `Wireframe`
 
-### `npm run eject`
+<p align="center" style="fill:red;">
+  <img src="./readme_assets/leeloWireframe.jpg" alt="leelo wireframe" title="Leelo Wireframe" style="max-width:1000px;"/>
+</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Requirements
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js `v18.12.1 or LTS`
+- npm or yarn
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone the repository: `git clone https://github.com/voidoperator/leelo.git`
+2. Install the dependencies: `npm install` or `yarn install`
+3. Start the development server: `npm start` or `yarn start`
+4. Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
 
-## Learn More
+# Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Use the sidenav to navigate between the different sections of the Reddit homepage.
+2. Use the searchbar to look up specific subreddits.
+3. Click on a subreddit from the search results to display its content.
+4. Click the chat-bubble icon to display the comment section of specific posts.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Note
+
+- This app uses the Reddit JSON API and a working path of the Google Translate Chrome Extension, to access it's API and avoid needing to use an API Key. To use the app, you don't need to get your own API keys.
+
+# Development
+
+- The app is built with Webpack and polyfilled with Babel.
+- Styled with Tailwind & HeroIcons.
+- Prod build outputs minified CSS and mangled JS.
+- ESLint extends the Airbnb-base config.
+- Pre-commit forces lint script to run.
+- Axios is used for all API calls.
+- Relative-Time used to parse Reddit API's epoch time.
+- Jest and React Testing Library are used for unit testing.
+
+# Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+# License
+
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
