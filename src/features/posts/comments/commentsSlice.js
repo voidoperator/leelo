@@ -23,22 +23,23 @@ const commentsSlice = createSlice({
       state.displayComments = action.payload;
     },
   },
-  extraReducers: {
-    [fetchComments.pending]: (state, action) => {
-      state.isLoading = true;
-      state.hasError = false;
-    },
-    [fetchComments.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.hasError = false;
-      const { id, children } = action.payload;
-      children.pop();
-      state.allComments[id] = children;
-    },
-    [fetchComments.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.hasError = true;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchComments.pending, (state) => {
+        state.isLoading = true;
+        state.hasError = false;
+      })
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.hasError = false;
+        const { id, children } = action.payload;
+        children.pop();
+        state.allComments[id] = children;
+      })
+      .addCase(fetchComments.rejected, (state, action) => {
+        state.isLoading = false;
+        state.hasError = true;
+      });
   },
 });
 

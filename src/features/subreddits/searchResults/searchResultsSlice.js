@@ -26,7 +26,7 @@ const searchResultsSlice = createSlice({
   reducer: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSearchResults.pending, (state, action) => {
+      .addCase(fetchSearchResults.pending, (state) => {
         state.hasSearched = false;
         state.isLoading = true;
         state.hasError = false;
@@ -36,8 +36,8 @@ const searchResultsSlice = createSlice({
         state.isLoading = false;
         state.hasError = false;
         state.hasSearched = true;
-        const { termToSearch, loadMore, data } = action.payload;
-        state.searchTerm = termToSearch;
+        const { searchTerm, loadMore, data } = action.payload;
+        state.searchTerm = searchTerm;
         state.nextPage = data.data.after;
         state.amountOfResults = data.data.dist;
         if (loadMore) {
@@ -48,7 +48,7 @@ const searchResultsSlice = createSlice({
           state.allSearchResults = data.data.children;
         }
       })
-      .addCase(fetchSearchResults.rejected, (state, action) => {
+      .addCase(fetchSearchResults.rejected, (state) => {
         state.hasSearched = false;
         state.isLoading = false;
         state.hasError = true;

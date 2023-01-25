@@ -22,7 +22,7 @@ const fetchRedditPostsSlice = createSlice({
     redditPosts: [],
   },
   reducers: {
-    resetPosts: (state, action) => {
+    resetPosts: (state) => {
       state.redditPosts = [];
     },
     setDomainPath: (state, action) => {
@@ -48,21 +48,22 @@ const fetchRedditPostsSlice = createSlice({
       }
     },
   },
-  extraReducers: {
-    [fetchRedditPosts.pending]: (state, action) => {
-      state.isLoading = true;
-      state.hasError = false;
-    },
-    [fetchRedditPosts.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.hasError = false;
-      state.nextPage = action.payload.data.after;
-      state.redditPosts.push(action.payload.data.children);
-    },
-    [fetchRedditPosts.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.hasError = true;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchRedditPosts.pending, (state) => {
+        state.hasError = false;
+        state.isLoading = true;
+      })
+      .addCase(fetchRedditPosts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.hasError = false;
+        state.nextPage = action.payload.data.after;
+        state.redditPosts.push(action.payload.data.children);
+      })
+      .addCase(fetchRedditPosts.rejected, (state) => {
+        state.isLoading = false;
+        state.hasError = true;
+      });
   },
 });
 
