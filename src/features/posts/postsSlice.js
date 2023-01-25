@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const fetchRedditPosts = createAsyncThunk(
   'reddit/fetchRedditPosts',
   async (page, { getState }) => {
-    const apiEndPoint = 'https://www.reddit.com';
-    const nextPage = page ? `&after=${page}` : '';
-    const state = getState().redditPosts;
-    const location = state.domainPath;
-    const response = await fetch(`${apiEndPoint}${location}${nextPage}`);
-    const json = await response.json();
-    return json;
+    const { domainPath } = getState().redditPosts;
+    const { data } = await axios.get(
+      `https://www.reddit.com${decodeURI(domainPath)}&after=${page}`
+    );
+    return data;
   }
 );
 

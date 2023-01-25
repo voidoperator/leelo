@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const fetchSearchResults = createAsyncThunk(
   'searchResults/fetchSearchResults',
   async ({ searchTerm, page, pagination }) => {
-    const loadMore = !!pagination;
-    const nextPage = page ? `&after=${page}` : '';
-    const termToSearch = searchTerm.split(' ').join('%20');
-    const apiEndPoint = `https://www.reddit.com/search.json?q=${termToSearch}${nextPage}&type=sr`;
-    const response = await fetch(apiEndPoint);
-    const data = await response.json();
-    return { termToSearch, loadMore, data };
+    const apiEndPoint = `https://www.reddit.com/search.json?q=${decodeURI(
+      searchTerm
+    )}&after=${page}&type=sr`;
+    const { data } = await axios.get(apiEndPoint);
+    return { loadMore: !!pagination, searchTerm, data };
   }
 );
 

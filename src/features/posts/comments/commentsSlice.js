@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const fetchComments = createAsyncThunk(
   'comments/fetchComments',
   async ({ url, id }) => {
-    const apiEndPoint = `https://www.reddit.com${url}.json?limit=20`;
-    const response = await fetch(apiEndPoint);
-    const json = await response.json();
-    const data = json[1].data.children;
-    return { id, data };
+    const { data } = await axios.get(
+      `https://www.reddit.com${decodeURI(url)}.json?limit=20`
+    );
+    return { id, children: data[1].data.children };
   }
 );
 
@@ -31,9 +31,9 @@ const commentsSlice = createSlice({
     [fetchComments.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.hasError = false;
-      const { id, data } = action.payload;
-      data.pop();
-      state.allComments[id] = data;
+      const { id, children } = action.payload;
+      children.pop();
+      state.allComments[id] = children;
     },
     [fetchComments.rejected]: (state, action) => {
       state.isLoading = false;
