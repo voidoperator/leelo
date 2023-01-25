@@ -1,11 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useRouteMatch,
-} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { SideNav } from '../features/sideNav/SideNav';
 import { Posts } from '../features/posts/Posts';
 import { Subreddits } from '../features/subreddits/Subreddits';
