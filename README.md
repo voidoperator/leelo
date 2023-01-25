@@ -76,7 +76,6 @@ A web app built with React, Redux, and powered by the Reddit and Google Translat
 - Pre-commit forces lint script to run.
 - Axios is used for all API calls.
 - Relative-Time used to parse Reddit API's epoch time.
-- Jest and React Testing Library are used for unit testing.
 
 # Contributing
 
